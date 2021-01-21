@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book xample"
-author: "Yihui Xie"
+title: "An Introduction to Bayesian Statistics"
+author: "Manuele Leonelli"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
