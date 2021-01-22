@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction | An Introduction to Bayesian Statistics</title>
+  <meta name="description" content="This is a set of lecture notes." />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction | An Introduction to Bayesian Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of lecture notes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction | An Introduction to Bayesian Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of lecture notes." />
+  
+
+<meta name="author" content="Manuele Leonelli" />
+
+
+<meta name="date" content="2021-01-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Introduction to Bayesian Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#a-more-technical-discussion"><i class="fa fa-check"></i><b>1.1</b> A more technical discussion</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#a-first-example"><i class="fa fa-check"></i><b>1.2</b> A first example</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#why-bayesian-statistics"><i class="fa fa-check"></i><b>1.3</b> Why Bayesian statistics</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#a-bit-of-history"><i class="fa fa-check"></i><b>1.4</b> A bit of history</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#whats-next"><i class="fa fa-check"></i><b>1.5</b> What’s next</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to Bayesian Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>Bayesian statistics is the name given to a whole branch of statistics which differs from the traditional approach taught in introductory statistics classes.</p>
+<p>In order to understand what this difference is, let’s first review the basic traditional approach, which is often referred to as <em>frequentist</em> (we will see later on where this word comes from). In general, we are interested about an unknown characteristic of a population, usually called a population <em>parameter</em>. For instance, we may be interested in the mean annual salary of an individual living in the city of Madrid. Let’s call this quantity <span class="math inline">\(\mu\)</span>. Suppose it is impossible to exactly compute this quantity by accessing the information about the salary of everyone living in Madrid.</p>
+<p>The next step would be to collect a sample, let’s call it <span class="math inline">\(y\)</span>, with information about the salary of some inhabitants of Madrid. We would then use this sample to come up with a best guess, or an estimate, of <span class="math inline">\(\mu\)</span>. Due to multiple reasons which are not of interest here, we know that computing the sample mean <span class="math inline">\(\bar{y}\)</span> is an optimal way to estimate <span class="math inline">\(\mu\)</span> and we denote such a value <span class="math inline">\(\hat{\mu}\)</span>.</p>
+<p>In most cases, having just a single value is not satisfactory enough, and we instead want an interval of values which would likely contain the true value <span class="math inline">\(\mu\)</span>. So a follow-up step would be to construct a so-called <em>confidence interval</em>. You may recall that a confidence interval for a mean can be computed as
+<span class="math display">\[
+\hat{\mu}\pm z_{\alpha}\sqrt{\frac{\hat{\sigma}^2}{n}},
+\]</span>
+where</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> is the sample size;</p></li>
+<li><p><span class="math inline">\(\hat{\sigma}^2\)</span> is an estimate of the population variance, that is a guess of how much variability there is around the mean;</p></li>
+<li><p><span class="math inline">\(z_{\alpha}\)</span> is some value that comes either from a Normal or T-Student distribution which depends on how confident we want to be that the true <span class="math inline">\(\mu\)</span> lies within the interval.</p></li>
+</ul>
+<p>In the so-called frequentist approach we only used the data to guide the estimation of the unknown parameter and we assumed that we had no <em>prior</em> information about what plausible values of <span class="math inline">\(\mu\)</span> might be. Suppose on the other hand that in advance we had some guessing that the true value of <span class="math inline">\(\mu\)</span> may lie within 20k and 50k. In the frequentist approach there is no way to embed this information within the inferential process. Only the data can be used to guide the estimation of the parameters. The <em>Bayesian</em> approach on the other hand is designed to formally account prior information about the unknown parameter in the inferential process.</p>
+<div id="a-more-technical-discussion" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> A more technical discussion</h2>
+<p>In order to understand how the Bayesian approach actually works, let’s discuss slightly more formally how the frequentist estimation process works. Let’s more generally call <span class="math inline">\(\theta\)</span> the unknown population parameter that we want to estimate and <span class="math inline">\(y\)</span> the sample. Depending on the type of data we are working with, we start choosing a statistical model, or a data-generating process, <span class="math inline">\(p(y|\theta)\)</span>. To make this clearer, consider the following examples:</p>
+<ul>
+<li><p>suppose that we observe coin tosses and we are interested in the probability of head: then the standard choice for <span class="math inline">\(p(y|\theta)\)</span> would be the probability mass function of a Bernoulli distribution.</p></li>
+<li><p>suppose we collect information about the number of goals scored in football matches: then the standard choice for <span class="math inline">\(p(y|\theta)\)</span> would be the probability mass function of a Poisson distribution;</p></li>
+<li><p>often we let <span class="math inline">\(p(y|\theta)\)</span> be the probability density function of a Normal distribution. Such a choice is in general due to the <em>Central Limit Theorem</em> which tells us that if our sample size is large enough then any distribution is well approximated by a Normal.</p></li>
+</ul>
+<p>The quantity <span class="math inline">\(p(y|\theta)\)</span> is also often referred to as the <em>likelihood</em> and written as <span class="math inline">\(L(\theta|y)\)</span>. Notice that the order of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(y\)</span> is reversed: whilst <span class="math inline">\(p(y|\theta)\)</span> is seen as the distribution of <span class="math inline">\(y\)</span> given the parameter <span class="math inline">\(\theta\)</span>, <span class="math inline">\(L(\theta|y)\)</span> is seen as a measure of how likely is that the parameter is <span class="math inline">\(\theta\)</span> given that we observed the sample <span class="math inline">\(y\)</span>.</p>
+<p>No matter what the interpretation is, we view as random only the process that generated the data which is assumed to behave according to some distribution <span class="math inline">\(p(y|\theta)\)</span>. The parameter <span class="math inline">\(\theta\)</span> is itself assumed to be fixed and unknown: it is not random, it is just that we do not know its value. We use <span class="math inline">\(p(y|\theta)\)</span> to come up with an estimate <span class="math inline">\(\hat\theta\)</span> of the unknwon <span class="math inline">\(\theta\)</span>. For instance in maximum likelihood estimation <span class="math inline">\(\hat\theta\)</span> is found as
+<span class="math display">\[
+\hat\theta = \arg\max_{\theta} p(y|\theta)
+\]</span></p>
+<p>The Bayesian approach differs from the frequentist approach since it consider the unknown parameter <span class="math inline">\(\theta\)</span> to also be a random variable and not simply fixed. Therefore in Bayesian statistics the unknown parameter is also assigned a distribution, <span class="math inline">\(p(\theta)\)</span>, which is referred to as <em>prior</em> distribution. Furthermore, the main building block of Bayesian statistics is a joint distribution for the data-generating process and the unknown parameter, since both are random. Such a distribution is
+<span class="math display">\[
+p(y,\theta),
+\]</span>
+which by using basic rules of conditional probabilities can be written as
+<span class="math display">\[
+p(y,\theta) = p(y|\theta)p(\theta).
+\]</span>
+The above expression can be seen as the product of the data-generating distribution, or likelihood, with the prior distribution.</p>
+<p>The prior distribution encodes our beliefs about the unknown parameter of interest before observing any data. Now suppose we collect the sample <span class="math inline">\(y\)</span>: we would like to use it to revise or update our beliefs about the unknown parameter <span class="math inline">\(\theta\)</span>. This is done using Bayes theorem, hence the name Bayesian statistics. Most likely, you are already familiar with the version of Bayes theorem for events namely:
+<span class="math display">\[
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}.
+\]</span>
+Similarly we can write</p>
+<p><span class="math display" id="eq:posterior">\[\begin{equation}
+ \tag{1.1}
+p(\theta|y) = \frac{p(y|\theta)p(\theta)}{p(y)}
+\end{equation}\]</span></p>
+<p>and <span class="math inline">\(p(\theta|y)\)</span> is usually called the <em>posterior distribution</em>: it encodes our beliefs about <span class="math inline">\(\theta\)</span> after having observed the sample <span class="math inline">\(y\)</span>. Equation <a href="intro.html#eq:posterior">(1.1)</a> is the backbone of Bayesian statistics and the main task in a Bayesian analysis is to compute such a posterior distribution.</p>
+<p>There are two important observations to make now. First, in Equation <a href="intro.html#eq:posterior">(1.1)</a> the terms <span class="math inline">\(p(y|\theta)\)</span> and <span class="math inline">\(p(\theta)\)</span> are chosen by the modeler, whilst <span class="math inline">\(p(y)\)</span> can be computed from these two as:
+<span class="math display">\[
+p(y)=\int p(y,\theta)d\theta=\int p(y|\theta)p(\theta)d\theta
+\]</span>
+and it is called <em>marginal likelihood</em>. So Equation <a href="intro.html#eq:posterior">(1.1)</a> can also be written as
+<span class="math display">\[
+p(\theta|y) = \frac{p(y|\theta)p(\theta)}{\int p(y|\theta)p(\theta)d\theta}.
+\]</span></p>
+<p>Second, our object of study is the parameter <span class="math inline">\(\theta\)</span> and <span class="math inline">\(p(\theta|y)\)</span> is a function of <span class="math inline">\(\theta\)</span> only. So the term <span class="math inline">\(p(y)\)</span> at the denominator of Equation <a href="intro.html#eq:posterior">(1.1)</a> is actually only a normalization constant to make sure that <span class="math inline">\(p(\theta|y)\)</span> integrates to 1. So Equation <a href="intro.html#eq:posterior">(1.1)</a> is often presented as</p>
+<p><span class="math display" id="eq:posterior1">\[\begin{equation}
+ \tag{1.2}
+p(\theta|y)\propto p(y|\theta)p(\theta).
+\end{equation}\]</span></p>
+<p>Equation <a href="intro.html#eq:posterior1">(1.2)</a> is actually the one that most often we will work with since <span class="math inline">\(p(y)\)</span> is not actually necessary and it is often very hard to compute.</p>
+<p>One question you might have is: why did we combine the prior distribution and data-generating distribution using Bayes Theorem? We could have used different rules to come up with a so-called posterior distribution. We will not enter into the details of this, but if beliefs are encoded as probability distributions, then it can proved that Bayes theorem is the optimal way to update them in the light of data.</p>
+</div>
+<div id="a-first-example" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> A first example</h2>
+<p>Suppose we are interested in estimating the prevalence of COVID-19 cases in the city of Madrid. For this purpose we select a sample of 100 individuals living in the city. Let’s assume that each individual has the same probability of having the disease and that each individual has the disease independently of others.</p>
+<p>Then we could model the fact that each individual has the disease as a Bernoulli distribution, where the value 1 denotes having the disease. Suppose the result of COVID testing over these 100 individuals shows that 10 of them are positive. Then we would estimate the parameter <span class="math inline">\(\theta\)</span> of the Bernoulli distribution as <span class="math inline">\(\hat\theta=10/100=0.1\)</span>, which would in turn be our estimate for the prevalence of COVID cases in Madrid. Furthermore, we could construct a 95% confidence interval which, if you recall from previous courses, can be computed as
+<span class="math display">\[
+\hat\theta\pm 1.96 \sqrt{\frac{\hat\theta(1-\hat\theta)}{n}}= 0.1 \pm 1.96 \sqrt{\frac{0.1\cdot 0.9}{100}}= (0.041,0.159).
+\]</span></p>
+<p>Let’s take a Bayesian approach instead. For the data-generating process it is still of course reasonable to believe that a Bernoulli distribution with unknown parameter <span class="math inline">\(\theta\)</span> is appropriate. Now we also need to define a prior distribution. Suppose that from data related to other European cities, we believe that such a prevalence number is between 0.05 and 0.25 with an average around 0.15. We will later learn ways to choose prior distributions, but suppose that such a prior information can be represented by the distribution colored in blue in Figure <a href="intro.html#fig:example">1.1</a>. This distribution represents our beliefs about the prevalence of COVID in the city of Madrid.</p>
+<div class="figure"><span id="fig:example"></span>
+<img src="BayesStats_files/figure-html/example-1.png" alt="Prior and posterior distribution for the COVID example." width="672" />
+<p class="caption">
+Figure 1.1: Prior and posterior distribution for the COVID example.
+</p>
+</div>
+<p>Suppose we collect the same sample as before of 10 positive out of 100 and compute the posterior distribution using Bayes theorem. This is reported in Figure <a href="intro.html#fig:example">1.1</a> by the red distribution. So differently from the frequentist case where we have a single point estimate of <span class="math inline">\(\theta\)</span> or a confidence interval of plausible values, we now have a full distribution for the variable <span class="math inline">\(\theta\)</span> in the light of data and prior beliefs. Given such a distribution we can do multiple things:</p>
+<ul>
+<li><p>we can come up with a single point estimate for <span class="math inline">\(\theta\)</span>, for instance the mean or the mode of the distribution;</p></li>
+<li><p>we can identify a plausible region of values of <span class="math inline">\(\theta\)</span> in the same spirit of a confidence interval.</p></li>
+</ul>
+<p>It is important to notice that our beliefs about the prevalence of COVID has now changed in the light of data. Our prior distribution was quite spread around values between 0.05 and 0.25, whilst the posterior is a lot more concentrated around 0.1 which is actually the sample proportion of COVID.</p>
+</div>
+<div id="why-bayesian-statistics" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Why Bayesian statistics</h2>
+<p>The previous example showed an example of a simple Bayesian analysis and how it differs from a frequentist one. One might wonder what is the real advantage of taking a Bayesian approach with respect to a frequentist one: we saw that in the end the conclusion from both approaches was pretty much the same.</p>
+<p>In general we can notice the below advantages of a Bayesian approach:</p>
+<ul>
+<li><p>it allows to more flexibly construct complicated models. This is a concept we will see in later chapters when we will discuss hierarchical models;</p></li>
+<li><p>it allows to easily embed in inference other type of information which is not only in the form of data: for instance, expert judgment or results from other studies;</p></li>
+<li><p>it allows to use data in a sequential manner. Suppose we carried out our analysis about COVID prevalence and once finished we are actually given the result of tests on new individuals. In the Bayesian framework, we could then use our posterior from the previous step as our new prior and use the same machinery to come up with a new posterior. In a frequentist setting, we would need to use the full dataset again to come up with an estimate of <span class="math inline">\(\theta\)</span>. Of course this is trivial in the COVID example, but for much more complicated models, it may be very costly to repeat the analysis with the full dataset.</p></li>
+<li><p>it leads to an intuitive interpretation of confidence intervals. Standard confidence intervals are probability statements about <span class="math inline">\(\hat\theta\)</span> and not <span class="math inline">\(\theta\)</span> itself as often erraneosly thought. The correct interpretation of a 95% confidence interval is that if we were to collect many many times samples under the same conditions and each time construct a confidence interval, then 95% of the times the interval would include the true value <span class="math inline">\(\theta\)</span>. However, most often people interpret confidence intervals as with 95% probability the true unknown parameter lies in the interval, which is not correct. However, this is the interpretation of confidence intervals in the Bayesian setup;</p></li>
+<li><p>it can deal more easily with rare situations. Let’s consider the COVID example again and suppose that on the other hand we observed zero positive tests. Then our point estimate of the prevalance would be zero and confidence intervals at any level of confidence (even 99.9999%) would simply be the point zero, which we would in general not believe unless the sample size is extremely large! Using the same prior as before, in the case of zero positive cases our posterior would be the one in Figure <a href="intro.html#fig:example1">1.2</a>. Although most of the distribution is around zero, we still have some probability that the prevalence is some small number close to zero. The more and more only negative tests we would collect, the more the distribution would be concentrated in zero!</p></li>
+</ul>
+<div class="figure"><span id="fig:example1"></span>
+<img src="BayesStats_files/figure-html/example1-1.png" alt="Prior and posterior distribution for the COVID example." width="672" />
+<p class="caption">
+Figure 1.2: Prior and posterior distribution for the COVID example.
+</p>
+</div>
+<p>Of course there are also drawbacks of the Bayesian approach. The main critic regards the prior distribution and the addition of a “subjective” element in the analysis. We will discuss a lot more this issue in the next chapter. The second drawback is that it is computationally much more expensive and most often Bayesian methods require more computational power and computational time. As we will see in the next section, this was actually one of the reasons Bayesian methods were not used for many years.</p>
+</div>
+<div id="a-bit-of-history" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> A bit of history</h2>
+<p>The term Bayesian statistics comes from the fact that inference is based upon a sequential use of Bayes theorem. Reverend Thomas Bayes was an English minister whose 1763 posthumosly paper “An Essay Towards Solving a Problem in the Doctrine of Chances” gives the first account of what we now call Bayes theorem. As a matter of fact, his account of the result is not in the form you are familiar with. It was Pierre Simon Laplace, an 18th century French scientist, who introduced Bayes theorem in a form much more similar to the one we use today in his essay “Memoire sur la Probabilite des Causes par les Evenements.”</p>
+<p>Laplace was actually studying the probability of a “success” in a Binomial experiment given that data was observed. In the terminology we introduced he was characterizing the posterior distribution of <span class="math inline">\(\theta\)</span>. The method of deriving a probability distribution for an unknown parameter given data was overall called the “inverse probability” problem and became the gold standard throughout the 19th century.</p>
+<p>Of course there were many scientists that critiqued such a method, including Boole and Venn, due to the non-objectivity of the method. However, since no alternative was available at the time, the inverse probability method continued to be the gold-standard.</p>
+<p>It was only at the beginning of the 20th century with the work of Ronald Alymer Fisher, Jerzy Neyman and Egon Pearson, that the frequentist approach became to emerge. Therefore, the approach of statistics that is most frequently taught is actually less recent than Bayesian ideas.</p>
+<p>Although frequentist approached dominated statistics, Bayesian ideas were still being developed in the first half of the 20th century through the work on subjective probabilities of Harold Jeffreys, Bruno de Finetti and Leonard Savage.</p>
+<p>In the second half of the century there was a resurgence of Bayesian methods. Two of the main reasons were:</p>
+<ul>
+<li><p>the work on expected utility of von Neumann and Morgenstern where a subjective view of probability can be more easily accepted became very popular;</p></li>
+<li><p>computational power increased at a speed never seen before and a lot of complex problems could be at last approached with a Bayesian approach.</p></li>
+</ul>
+<p>Nowadays Bayesian statistics is as popular as frequentist statistics and research is carried out almost equally in the two frameworks. There are indeed problems that can be more easily tackled with a Bayesian approach (and the other way around too, of course!).</p>
+</div>
+<div id="whats-next" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> What’s next</h2>
+<p>This introduction should have given you a feeling of what a Bayesian analysis entails and the various steps required. In the next chapters we will dig deeper into the various components of a Bayesian analysis, namely:</p>
+<ul>
+<li><p>we will first discuss various interpretations of what probability is which will in a way motivate or justify the use of Bayesian methods in a variety of settings;</p></li>
+<li><p>we will learn how to compute posterior distributions for a variety of simple models;</p></li>
+<li><p>we will discuss how to summarize a posterior distribution to come up with point estimates and confidence intervals;</p></li>
+<li><p>we will investigate various types of prior distributions and their effect to the posterior distribution;</p></li>
+<li><p>we will learn how to construct more complex models within a Bayesian framework, which are usually called hierarchical or multilevel models.</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["BayesStats.pdf", "BayesStats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
