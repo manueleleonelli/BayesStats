@@ -24,7 +24,7 @@
 <meta name="author" content="Manuele Leonelli" />
 
 
-<meta name="date" content="2021-01-22" />
+<meta name="date" content="2021-02-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,70 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -80,7 +144,16 @@
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#a-first-example"><i class="fa fa-check"></i><b>1.2</b> A first example</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#why-bayesian-statistics"><i class="fa fa-check"></i><b>1.3</b> Why Bayesian statistics</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#a-bit-of-history"><i class="fa fa-check"></i><b>1.4</b> A bit of history</a></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#whats-next"><i class="fa fa-check"></i><b>1.5</b> What’s next</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#interpretations-of-probability"><i class="fa fa-check"></i><b>1.5</b> Interpretations of probability</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#a-review-of-probability"><i class="fa fa-check"></i><b>1.6</b> A review of probability</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#random-variables"><i class="fa fa-check"></i><b>1.6.1</b> Random variables</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#joint-distributions"><i class="fa fa-check"></i><b>1.6.2</b> Joint distributions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#expectation-and-variance"><i class="fa fa-check"></i><b>1.6.3</b> Expectation and variance</a></li>
+<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#independence"><i class="fa fa-check"></i><b>1.6.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exchangeability"><i class="fa fa-check"></i><b>1.7</b> Exchangeability</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#whats-next"><i class="fa fa-check"></i><b>1.8</b> What’s next</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -220,11 +293,201 @@ Figure 1.2: Prior and posterior distribution for the COVID example.
 </ul>
 <p>Nowadays Bayesian statistics is as popular as frequentist statistics and research is carried out almost equally in the two frameworks. There are indeed problems that can be more easily tackled with a Bayesian approach (and the other way around too, of course!).</p>
 </div>
-<div id="whats-next" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> What’s next</h2>
+<div id="interpretations-of-probability" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Interpretations of probability</h2>
+<p>The field of Bayesian statistics is deeply connected to a different interpretation of probability then the ones you are probably familiar with.</p>
+<p>The most common and basic interpretation of probability is due to Pierre Simon Laplace and is based on the notion of symmetry of elementary outcomes or, to put it differently, on the notion of equiprobability. In Laplace’s definition the probability of an event is defined as the number of favourable cases over the number of total cases. Let’s consider the throw of a simple dice and the event that the number shown is even. There are three favourable cases (2,4 and 6) and six total cases (the numbers from 1 to 6). The probability of this event is therefore one half as one would expect. Of course this definition applies only to cases where elementary outcomes are equiprobable: in the example if the dice is not biased.</p>
+<p>The second most common interpretation is the so-called <em>frequentist</em> one. Probability is defined as the relative frequency in a long sequence of identical independent trials. It is assumed that there is an underlying generating process which every times generates an independent instance. Let’s consider again the event of an even number in a dice throw. The probability of this event is defined as the frequency of even numbers if we were to repeat the throw of a dice an infinite number of times. Figure <a href="intro.html#fig:dice">1.3</a> illustrates how the relative frequency of even numbers evolves in 500 throws. The red line is the relative frequency: for the first 100 tries it is quite far away from the value 0.5 and then it slowly stabilizes at the true value.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2021</span>)</span>
+<span id="cb1-2"><a href="intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">500</span>,<span class="cn">TRUE</span>)<span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(x)<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Probability&quot;</span>)</span>
+<span id="cb1-4"><a href="intro.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:dice"></span>
+<img src="BayesStats_files/figure-html/dice-1.png" alt="Relative frequency of even numbers in 500 dice throws" width="50%" />
+<p class="caption">
+Figure 1.3: Relative frequency of even numbers in 500 dice throws
+</p>
+</div>
+<p>Now let’s think at some other types of events:</p>
+<ul>
+<li><p>Spain winning the next world cup;</p></li>
+<li><p>the next expedition to Mars fails;</p></li>
+<li><p>it rains tomorrow.</p></li>
+</ul>
+<p>It becomes challenging to define probability as relative frequency since we cannot think of a sequence of repetitions of such processes that are exactly equal. Such events are in general <em>non-reproducible</em>. However, we can think of defining a probability that these events happen, which in a way encodes our <em>degree of belief</em> that the event will happen. Notice that such a degree of belief is personal and may vary from individual to individual (a Spaniard may give a higher probability of Spain winning a World Cup than a foreigner). For this reason, this interpretation of probability is usually referred to as <em>subjective</em>.</p>
+<p>A classical way to define probabilities in the subjective framework is in terms of betting odds. Consider an event <span class="math inline">\(A\)</span>. Then <span class="math inline">\(P(A)\)</span>, the probability of <span class="math inline">\(A\)</span>, is the amount you are willing to pay for a lottery ticket that pays one Euro if <span class="math inline">\(A\)</span> happens. Notice the <em>you</em> in the previous sentence. It is your probability and depends on the information available to <em>you</em>. We will not focus on this, but it has been proved that if one specifies probabilities in this way, and assuming you choose the numbers in order to win money, then subjective probabilities respect the usual axioms probabilities (probabilities are numerical quantities, defined
+on a set of ‘outcomes,’ that are non-negative, additive over mutually exclusive outcomes, and sum to 1 over all possible mutually exclusive outcomes).</p>
+<p>The following quote from De Finetti is provocative.</p>
+<blockquote>
+<p>My thesis, paradoxically, and a little provocatively, but nonetheless
+genuinely, is simply this:</p>
+<p>PROBABILITY DOES NOT EXIST</p>
+<p>The abandonment of superstitious beliefs about the existence of Phlogiston, the Cosmic Ether, Absolute Space and Time, . . . , orFairies and Witches, was an essential step along the road to scientific thinking. Probability, too, if regarded as something endowed with some kind of objective existence, is no less a misleading misconception, an illusory attempt to exteriorize or materialize our true probabilistic beliefs.</p>
+</blockquote>
+<p>This interpretation of probability is the one underlying most Bayesian analyses. In Bayesian statistics unknown quantities (for instance parameters of interest) are random variables and probabilities must be assigned to them by the modeler.</p>
+<p>Another approach sees probability as a <em>logic of plausibility</em>. This approach was put forward by statisticians as Jeffreys, Cox and Jaynes. According to this interpretation, the rules of probability extend ordinary (“Boolean”) logic, where statements are known to be either true or false, to inductive logic, where statements are true or false, but we don’t know which. Probability is then a scale used to describe how strongly, based on specific information, we believe a statement to be true. It is a more objective approach in the sense that anyone with the same knowledge should assign the same probabilities. Again we will not focus on this, but then one can prove the probabilities so defined obey the usual axioms.</p>
+<p>The following quote from Maxwell gives a justification of this approach.</p>
+<blockquote>
+<p>They say that Understanding ought to work by the rules of right reason. These rules are, or ought to be, contained in Logic; but the actual science of logic is conversant at present only with things either certain, impossible, or entirely doubtful, none of which (fortunately) we have to reason on. Therefore the true logic for this world is the calculus of Probabilities, which takes account of the magnitude of the probability which is, or ought to be, in a reasonable man’s mind.</p>
+</blockquote>
+<p>The above discussion is brief and not at all comprehensive but it should have given you at least an idea of possible different interpretations of probability.</p>
+</div>
+<div id="a-review-of-probability" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> A review of probability</h2>
+<div id="random-variables" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Random variables</h3>
+<p>A random variable is defined as an unknown numerical quantity about which we make probability statements.</p>
+<div id="discrete-random-variables" class="section level4" number="1.6.1.1">
+<h4><span class="header-section-number">1.6.1.1</span> Discrete random variables</h4>
+<p>Let <span class="math inline">\(Y\)</span> be a random variable and <span class="math inline">\(\mathbb{Y}\)</span> be the set of all possible values of <span class="math inline">\(Y\)</span>. Usually, <span class="math inline">\(\mathbb{Y}\)</span> is called the <em>sample space</em>. We say that <span class="math inline">\(Y\)</span> is discrete if <span class="math inline">\(\mathbb{Y}\)</span> is countable, meaning that <span class="math inline">\(\mathbb{Y}\)</span> can be expressed as <span class="math inline">\(\mathbb{Y} = \{y_1, y_2,\dots\}\)</span>.</p>
+<p>For each <span class="math inline">\(y\in\mathbb{Y}\)</span>, we define the <em>probability density function</em> (pdf) <span class="math inline">\(p(y)=P(Y=y)\)</span> which must obey the following conditions:</p>
+<ul>
+<li><p><span class="math inline">\(p(y)\geq 0\)</span> for all <span class="math inline">\(y\in\mathbb{Y}\)</span>;</p></li>
+<li><p><span class="math inline">\(\sum_{y\in\mathbb{Y}}p(y)=1\)</span>.</p></li>
+</ul>
+<p>For any <span class="math inline">\(A\subseteq \mathbb{Y}\)</span>, the probability that <span class="math inline">\(Y\in A\)</span> can be computed via summation as
+<span class="math display">\[
+P(Y\in A) = \sum_{y\in A} p(y).
+\]</span></p>
+</div>
+<div id="continuous-random-variables" class="section level4" number="1.6.1.2">
+<h4><span class="header-section-number">1.6.1.2</span> Continuous random variables</h4>
+<p>If the sample space <span class="math inline">\(\mathbb{Y}\)</span> is an interval, not necessarily finite (for instance it could be the set of all real numbers <span class="math inline">\(\mathbb{R}\)</span>), we say that <span class="math inline">\(Y\)</span> is a continuous random variable.</p>
+<p>The pdf of a continuous random variable <span class="math inline">\(Y\)</span> is now defined as the function <span class="math inline">\(p\)</span> for which:
+<span class="math display">\[
+P(a\leq Y \leq b) = \int_a^b p(y)dy
+\]</span></p>
+<p>We cannot define <span class="math inline">\(P(a \leq Y \leq b)\)</span> as equal to <span class="math inline">\(\sum_{a\leq y \leq b}p(y)\)</span> because the sum does not make sense (the set of real numbers between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is “uncountable”). So pdfs are defined indirectly as the function such that its integral is the probability of the corresponding event.</p>
+<p>The pdf of a continuous random variable must again obey two conditions:</p>
+<ul>
+<li><p><span class="math inline">\(p(y)\geq 0\)</span>, for all <span class="math inline">\(y\in\mathbb{Y}\)</span>;</p></li>
+<li><p><span class="math inline">\(\int_{y\in\mathbb{R}}p(y)dy =1\)</span>.</p></li>
+</ul>
+<p>We can see that integration for continuous distributions behaves similarly to summation for discrete distributions. In fact, integration can be thought of as a generalization of summation for situations in which the sample space is not countable. However, unlike a pdf in the discrete case, the pdf for a continuous
+random variable is:</p>
+<ul>
+<li><p>Not necessarily less than 1;</p></li>
+<li><p><span class="math inline">\(p(y)\)</span> is not “the probability that <span class="math inline">\(Y = y\)</span>”;</p></li>
+<li><p>such that <span class="math inline">\(P(Y=y)=0\)</span> for any <span class="math inline">\(y\in\mathbb{Y}\)</span>.</p></li>
+</ul>
+<p>However, if <span class="math inline">\(p(y_1) &gt; p(y_2)\)</span> we will sometimes informally say that <span class="math inline">\(y_1\)</span> “has a higher probability” than <span class="math inline">\(y_2\)</span>.</p>
+</div>
+</div>
+<div id="joint-distributions" class="section level3" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Joint distributions</h3>
+<div id="discrete-case" class="section level4" number="1.6.2.1">
+<h4><span class="header-section-number">1.6.2.1</span> Discrete case</h4>
+<p>Let <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> be two discrete random variables with <span class="math inline">\(\mathbb{Y}_1\)</span> and <span class="math inline">\(\mathbb{Y}_2\)</span> as sample spaces, respectively. We are often interested in joint beliefs about two variables. For instance we may want to know
+<span class="math display">\[
+P(Y_1=y_1,Y_2=y_2), \hspace{1cm} \mbox{for } y_1\in\mathbb{Y}_1 \mbox{ and } y_2\in \mathbb{Y}_2
+\]</span></p>
+<p>The (joint) pdf is then <span class="math inline">\(p(y_1,y_2)=P(Y_1=y_1,Y_2=y_2)\)</span>.</p>
+<p>The <em>marginal density</em> of <span class="math inline">\(Y_1\)</span> can be computed from the joint as:
+<span class="math display">\[
+p(y_1)=P(Y_1=y_1)=\sum_{y_2\in\mathbb{Y}_2}P(Y_1=y_1,Y_2=y_2)=\sum_{y_2\in\mathbb{Y}_2}p(y_1,y_2)
+\]</span></p>
+<p>The <em>conditional density</em> of <span class="math inline">\(Y_2\)</span> given <span class="math inline">\(Y_1=y_1\)</span> can be computed from the joint and the marginal as:
+<span class="math display">\[
+p(y_2|Y_1=y_1)=\frac{p(y_1,y_2)}{p(y_1)}
+\]</span>
+Re-arranging the above equation we can also see that
+<span class="math display">\[
+p(y_1,y_2)= p(y_2|Y_1=y_1)p(y_1)
+\]</span></p>
+<p>Let’s consider an example. Suppose we have a random variable <span class="math inline">\(Y_1\)</span> which is the outcome of a COVID-19 test (either positive or negative) and <span class="math inline">\(Y_2\)</span> which is whether an individual has COVID or not (sick or healthy). The joint probability distribution is defined as</p>
+<p><span class="math display">\[
+\begin{matrix}
+    \begin{array}{c|cc} \hline
+    &amp;\text{sick} &amp; \text{healthy} \\\hline
+    \text{positive} &amp; 0.10 &amp; 0.09 \\\hline
+    \text{negative} &amp; 0.01 &amp; 0.80 \\\hline
+    \end{array}
+\end{matrix}
+\]</span></p>
+<p>The above table is a joint pdf since all numbers are positive and sum to one. The marginal probability of <span class="math inline">\(Y_1\)</span> (test result) is the row sums: 19% of tests are positive and 81% of tests are negative. The marginal probability of <span class="math inline">\(Y_2\)</span> is the column sums: 11% of individuals are sick and 89% are healthy. Given these marginals we can also compute conditional probabilities:</p>
+<ul>
+<li><p><span class="math inline">\(p(\text{positive}|\text{sick})= \frac{p(\text{positive},\text{sick})}{p(\text{sick})}=\frac{0.10}{0.11}=0.91\)</span></p></li>
+<li><p>therefore <span class="math inline">\(p(\text{negative}|\text{sick})=0.09\)</span>.</p></li>
+</ul>
+<p>Other conditional probabilities can be derived similarly.</p>
+</div>
+<div id="continuous-case" class="section level4" number="1.6.2.2">
+<h4><span class="header-section-number">1.6.2.2</span> Continuous case</h4>
+<p>In the continuous case the definitions are analogous but summations are substituted with integrals. For instance,
+<span class="math display">\[
+p(y_1)= \int_{y_2\in\mathbb{Y}_2}p(y_1,y_2)dy_2
+\]</span></p>
+</div>
+</div>
+<div id="expectation-and-variance" class="section level3" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Expectation and variance</h3>
+<p>The mean or expectation of a random variable <span class="math inline">\(Y\)</span> is</p>
+<ul>
+<li><p><span class="math inline">\(E(Y)=\sum_{y\in\mathbb{Y}} y p(y)\)</span> in the discrete case;</p></li>
+<li><p><span class="math inline">\(E(Y)=\int_{y\in\mathbb{Y}}yp(y)dy\)</span> in the continuous case.</p></li>
+</ul>
+<p>The mean is the center of mass of the distribution.</p>
+<p>In addition to the location of a distribution we are often interested in how
+spread out it is. The most popular measure of spread is the variance of a
+distribution:
+<span class="math display">\[
+V(Y)=E((Y-E(Y))^2)= E(Y^2) - E(Y)^2
+\]</span>
+The variance is the average squared distance between values of <span class="math inline">\(Y\)</span> and its mean <span class="math inline">\(E(Y)\)</span>. The standard deviation is the square root of the variance, and is on the same scale as <span class="math inline">\(Y\)</span>.</p>
+<p>Above we have defined conditional densities of the form <span class="math inline">\(p(y_2|Y_1=y_1)\)</span>. Since formally they are pdfs they have expectation and variance which are usually denoted as <span class="math inline">\(E(Y_2|Y_1=y_1)\)</span> and <span class="math inline">\(V(Y_2|Y_1=y_1)\)</span>.</p>
+<p>Furthermore, it is often useful to express the mean and variance of a random variable <span class="math inline">\(Y_2\)</span> in terms of the conditional mean and variance given some related quantity <span class="math inline">\(Y_1\)</span>. The mean of <span class="math inline">\(Y_2\)</span> can be obtained by averaging the conditional mean over the marginal distribution of <span class="math inline">\(Y_1\)</span>:
+<span class="math display">\[
+E(Y_2)=E(E(Y_2|Y_1=y_1)).
+\]</span>
+Let’s see why this is true:
+<span class="math display">\[\begin{eqnarray*}
+E(Y_2) &amp;=&amp;\sum_{y_2\in\mathbb{Y}_2}y_2p(y_2)\\
+ &amp;=&amp;\sum_{y_2\in\mathbb{Y}_2}y_2\sum_{y_1\in\mathbb{Y}_1}p(y_1,y_2)\\
+ &amp;=&amp;\sum_{y_2\in\mathbb{Y}_2}\sum_{y_1\in\mathbb{Y}_1}y_2p(y_2|Y_1=y_1)p(y_1)\\
+ &amp;=&amp;\sum_{y_1\in\mathbb{Y}_1}p(y_1)\sum_{y_2\in\mathbb{Y}_2}y_2p(y_2|Y_1=y_1)\\
+ &amp;=&amp;\sum_{y_1\in\mathbb{Y}_1}p(y_1)E(Y_2|Y_1=y_1)\\
+ &amp;=&amp; E(E(Y_2|Y_1=y_1))
+\end{eqnarray*}\]</span></p>
+<p>The corresponding result for the variance includes two terms, the mean of the conditional
+variance and the variance of the conditional mean:
+<span class="math display">\[
+V(Y_2) = E(V(Y_2|Y_1=y_1)) + V(E(Y_2|Y_1=y_1))
+\]</span></p>
+</div>
+<div id="independence" class="section level3" number="1.6.4">
+<h3><span class="header-section-number">1.6.4</span> Independence</h3>
+<p>We say that two random variables are independent if
+<span class="math display">\[
+p(y_1,y_2) = p(y_1)p(y_2)
+\]</span>
+that is if the joint distribution can be written as the product of the marginal distributions.</p>
+<p>In Bayesian statistics we usually make the assumption that we have independent random variables <span class="math inline">\(Y_1,Y_2,\dots,Y_N\)</span> which all depend on a parameter <span class="math inline">\(\theta\)</span>, which is also believed to be random variable. We say that <span class="math inline">\(Y_1,\dots,Y_N\)</span> are conditionally independent given <span class="math inline">\(\theta\)</span> if
+<span class="math display">\[
+p(y_1,\dots,y_N|\theta)=\prod_{i=1}^Np(y_i|\theta).
+\]</span>
+Another way to say this is that <span class="math inline">\(Y_1,\dots,Y_N\)</span> are conditionally independent and identically distributed (iid).</p>
+<p>Notice that in standard statistical practice when we analyze a sample we start with the assumption that the data are realizations of independent and identically distributed random variables (not conditionally, since the parameter is not considered random).</p>
+</div>
+</div>
+<div id="exchangeability" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Exchangeability</h2>
+<p>In many situations with several random variables, we would believe that the specific order of observation of these random variables is not important. For example, consider a random sample of 3 participants from an infinite population which may or may not have a property (1 or 0) It makes sense that
+<span class="math display">\[
+p(1,0,0) = p(0,1,0) = p(0,0,1).
+\]</span>
+Such a property is called <em>exchangeability</em>.</p>
+<p>Let <span class="math inline">\(Y_1,\dots,Y_N\)</span> be random variables. If <span class="math inline">\(p(y_1,\dots,y_N)=p(y_{\pi_1},\dots,y_{\pi_N})\)</span> for all permutations <span class="math inline">\(\pi\)</span> of <span class="math inline">\(\{1,\dots,N\}\)</span>, then <span class="math inline">\(Y_1,\dots,Y_N\)</span> are exchangeable.</p>
+<p>Roughly speaking, <span class="math inline">\(Y_1,\dots, Y_n\)</span> are exchangeable if the subscript labels convey no information about the outcomes.</p>
+<p>The following result (often called De Finetti’s Theorem) tells us that it is sufficient to assume exchangeability for random variables to be (conditionally) iid.</p>
+<p><span class="math display">\[
+Y_1,\dots,Y_N \mbox{ are iid } \Longleftrightarrow Y_1,\dots,Y_n \mbox{ are exchangeable for all N&#39;s}
+\]</span></p>
+<p>So notice that in Bayesian statistics we are actually starting from a weaker assumption about the data-generating process.</p>
+</div>
+<div id="whats-next" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> What’s next</h2>
 <p>This introduction should have given you a feeling of what a Bayesian analysis entails and the various steps required. In the next chapters we will dig deeper into the various components of a Bayesian analysis, namely:</p>
 <ul>
-<li><p>we will first discuss various interpretations of what probability is which will in a way motivate or justify the use of Bayesian methods in a variety of settings;</p></li>
 <li><p>we will learn how to compute posterior distributions for a variety of simple models;</p></li>
 <li><p>we will discuss how to summarize a posterior distribution to come up with point estimates and confidence intervals;</p></li>
 <li><p>we will investigate various types of prior distributions and their effect to the posterior distribution;</p></li>

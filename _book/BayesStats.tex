@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -77,7 +117,7 @@
 
 \title{An Introduction to Bayesian Statistics}
 \author{Manuele Leonelli}
-\date{2021-01-22}
+\date{2021-02-05}
 
 \begin{document}
 \maketitle
@@ -263,14 +303,280 @@ In the second half of the century there was a resurgence of Bayesian methods. Tw
 
 Nowadays Bayesian statistics is as popular as frequentist statistics and research is carried out almost equally in the two frameworks. There are indeed problems that can be more easily tackled with a Bayesian approach (and the other way around too, of course!).
 
+\hypertarget{interpretations-of-probability}{%
+\section{Interpretations of probability}\label{interpretations-of-probability}}
+
+The field of Bayesian statistics is deeply connected to a different interpretation of probability then the ones you are probably familiar with.
+
+The most common and basic interpretation of probability is due to Pierre Simon Laplace and is based on the notion of symmetry of elementary outcomes or, to put it differently, on the notion of equiprobability. In Laplace's definition the probability of an event is defined as the number of favourable cases over the number of total cases. Let's consider the throw of a simple dice and the event that the number shown is even. There are three favourable cases (2,4 and 6) and six total cases (the numbers from 1 to 6). The probability of this event is therefore one half as one would expect. Of course this definition applies only to cases where elementary outcomes are equiprobable: in the example if the dice is not biased.
+
+The second most common interpretation is the so-called \emph{frequentist} one. Probability is defined as the relative frequency in a long sequence of identical independent trials. It is assumed that there is an underlying generating process which every times generates an independent instance. Let's consider again the event of an even number in a dice throw. The probability of this event is defined as the frequency of even numbers if we were to repeat the throw of a dice an infinite number of times. Figure \ref{fig:dice} illustrates how the relative frequency of even numbers evolves in 500 throws. The red line is the relative frequency: for the first 100 tries it is quite far away from the value 0.5 and then it slowly stabilizes at the true value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2021}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{,}\DecValTok{500}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{\%\%} \DecValTok{2} \SpecialCharTok{==} \DecValTok{0}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(x)}\SpecialCharTok{/}\DecValTok{1}\SpecialCharTok{:}\DecValTok{500}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Probability"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/dice-1} 
+
+}
+
+\caption{Relative frequency of even numbers in 500 dice throws}\label{fig:dice}
+\end{figure}
+
+Now let's think at some other types of events:
+
+\begin{itemize}
+\item
+  Spain winning the next world cup;
+\item
+  the next expedition to Mars fails;
+\item
+  it rains tomorrow.
+\end{itemize}
+
+It becomes challenging to define probability as relative frequency since we cannot think of a sequence of repetitions of such processes that are exactly equal. Such events are in general \emph{non-reproducible}. However, we can think of defining a probability that these events happen, which in a way encodes our \emph{degree of belief} that the event will happen. Notice that such a degree of belief is personal and may vary from individual to individual (a Spaniard may give a higher probability of Spain winning a World Cup than a foreigner). For this reason, this interpretation of probability is usually referred to as \emph{subjective}.
+
+A classical way to define probabilities in the subjective framework is in terms of betting odds. Consider an event \(A\). Then \(P(A)\), the probability of \(A\), is the amount you are willing to pay for a lottery ticket that pays one Euro if \(A\) happens. Notice the \emph{you} in the previous sentence. It is your probability and depends on the information available to \emph{you}. We will not focus on this, but it has been proved that if one specifies probabilities in this way, and assuming you choose the numbers in order to win money, then subjective probabilities respect the usual axioms probabilities (probabilities are numerical quantities, defined
+on a set of `outcomes,' that are non-negative, additive over mutually exclusive outcomes, and sum to 1 over all possible mutually exclusive outcomes).
+
+The following quote from De Finetti is provocative.
+
+\begin{quote}
+My thesis, paradoxically, and a little provocatively, but nonetheless
+genuinely, is simply this:
+
+PROBABILITY DOES NOT EXIST
+
+The abandonment of superstitious beliefs about the existence of Phlogiston, the Cosmic Ether, Absolute Space and Time, . . . , orFairies and Witches, was an essential step along the road to scientific thinking. Probability, too, if regarded as something endowed with some kind of objective existence, is no less a misleading misconception, an illusory attempt to exteriorize or materialize our true probabilistic beliefs.
+\end{quote}
+
+This interpretation of probability is the one underlying most Bayesian analyses. In Bayesian statistics unknown quantities (for instance parameters of interest) are random variables and probabilities must be assigned to them by the modeler.
+
+Another approach sees probability as a \emph{logic of plausibility}. This approach was put forward by statisticians as Jeffreys, Cox and Jaynes. According to this interpretation, the rules of probability extend ordinary (``Boolean'') logic, where statements are known to be either true or false, to inductive logic, where statements are true or false, but we don't know which. Probability is then a scale used to describe how strongly, based on specific information, we believe a statement to be true. It is a more objective approach in the sense that anyone with the same knowledge should assign the same probabilities. Again we will not focus on this, but then one can prove the probabilities so defined obey the usual axioms.
+
+The following quote from Maxwell gives a justification of this approach.
+
+\begin{quote}
+They say that Understanding ought to work by the rules of right reason. These rules are, or ought to be, contained in Logic; but the actual science of logic is conversant at present only with things either certain, impossible, or entirely doubtful, none of which (fortunately) we have to reason on. Therefore the true logic for this world is the calculus of Probabilities, which takes account of the magnitude of the probability which is, or ought to be, in a reasonable man's mind.
+\end{quote}
+
+The above discussion is brief and not at all comprehensive but it should have given you at least an idea of possible different interpretations of probability.
+
+\hypertarget{a-review-of-probability}{%
+\section{A review of probability}\label{a-review-of-probability}}
+
+\hypertarget{random-variables}{%
+\subsection{Random variables}\label{random-variables}}
+
+A random variable is defined as an unknown numerical quantity about which we make probability statements.
+
+\hypertarget{discrete-random-variables}{%
+\subsubsection{Discrete random variables}\label{discrete-random-variables}}
+
+Let \(Y\) be a random variable and \(\mathbb{Y}\) be the set of all possible values of \(Y\). Usually, \(\mathbb{Y}\) is called the \emph{sample space}. We say that \(Y\) is discrete if \(\mathbb{Y}\) is countable, meaning that \(\mathbb{Y}\) can be expressed as \(\mathbb{Y} = \{y_1, y_2,\dots\}\).
+
+For each \(y\in\mathbb{Y}\), we define the \emph{probability density function} (pdf) \(p(y)=P(Y=y)\) which must obey the following conditions:
+
+\begin{itemize}
+\item
+  \(p(y)\geq 0\) for all \(y\in\mathbb{Y}\);
+\item
+  \(\sum_{y\in\mathbb{Y}}p(y)=1\).
+\end{itemize}
+
+For any \(A\subseteq \mathbb{Y}\), the probability that \(Y\in A\) can be computed via summation as
+\[
+P(Y\in A) = \sum_{y\in A} p(y).
+\]
+
+\hypertarget{continuous-random-variables}{%
+\subsubsection{Continuous random variables}\label{continuous-random-variables}}
+
+If the sample space \(\mathbb{Y}\) is an interval, not necessarily finite (for instance it could be the set of all real numbers \(\mathbb{R}\)), we say that \(Y\) is a continuous random variable.
+
+The pdf of a continuous random variable \(Y\) is now defined as the function \(p\) for which:
+\[
+P(a\leq Y \leq b) = \int_a^b p(y)dy
+\]
+
+We cannot define \(P(a \leq Y \leq b)\) as equal to \(\sum_{a\leq y \leq b}p(y)\) because the sum does not make sense (the set of real numbers between \(a\) and \(b\) is ``uncountable''). So pdfs are defined indirectly as the function such that its integral is the probability of the corresponding event.
+
+The pdf of a continuous random variable must again obey two conditions:
+
+\begin{itemize}
+\item
+  \(p(y)\geq 0\), for all \(y\in\mathbb{Y}\);
+\item
+  \(\int_{y\in\mathbb{R}}p(y)dy =1\).
+\end{itemize}
+
+We can see that integration for continuous distributions behaves similarly to summation for discrete distributions. In fact, integration can be thought of as a generalization of summation for situations in which the sample space is not countable. However, unlike a pdf in the discrete case, the pdf for a continuous
+random variable is:
+
+\begin{itemize}
+\item
+  Not necessarily less than 1;
+\item
+  \(p(y)\) is not ``the probability that \(Y = y\)'';
+\item
+  such that \(P(Y=y)=0\) for any \(y\in\mathbb{Y}\).
+\end{itemize}
+
+However, if \(p(y_1) > p(y_2)\) we will sometimes informally say that \(y_1\) ``has a higher probability'' than \(y_2\).
+
+\hypertarget{joint-distributions}{%
+\subsection{Joint distributions}\label{joint-distributions}}
+
+\hypertarget{discrete-case}{%
+\subsubsection{Discrete case}\label{discrete-case}}
+
+Let \(Y_1\) and \(Y_2\) be two discrete random variables with \(\mathbb{Y}_1\) and \(\mathbb{Y}_2\) as sample spaces, respectively. We are often interested in joint beliefs about two variables. For instance we may want to know
+\[
+P(Y_1=y_1,Y_2=y_2), \hspace{1cm} \mbox{for } y_1\in\mathbb{Y}_1 \mbox{ and } y_2\in \mathbb{Y}_2
+\]
+
+The (joint) pdf is then \(p(y_1,y_2)=P(Y_1=y_1,Y_2=y_2)\).
+
+The \emph{marginal density} of \(Y_1\) can be computed from the joint as:
+\[
+p(y_1)=P(Y_1=y_1)=\sum_{y_2\in\mathbb{Y}_2}P(Y_1=y_1,Y_2=y_2)=\sum_{y_2\in\mathbb{Y}_2}p(y_1,y_2)
+\]
+
+The \emph{conditional density} of \(Y_2\) given \(Y_1=y_1\) can be computed from the joint and the marginal as:
+\[
+p(y_2|Y_1=y_1)=\frac{p(y_1,y_2)}{p(y_1)}
+\]
+Re-arranging the above equation we can also see that
+\[
+p(y_1,y_2)= p(y_2|Y_1=y_1)p(y_1)
+\]
+
+Let's consider an example. Suppose we have a random variable \(Y_1\) which is the outcome of a COVID-19 test (either positive or negative) and \(Y_2\) which is whether an individual has COVID or not (sick or healthy). The joint probability distribution is defined as
+
+\[
+\begin{matrix}
+    \begin{array}{c|cc} \hline
+    &\text{sick} & \text{healthy} \\\hline
+    \text{positive} & 0.10 & 0.09 \\\hline
+    \text{negative} & 0.01 & 0.80 \\\hline
+    \end{array}
+\end{matrix}
+\]
+
+The above table is a joint pdf since all numbers are positive and sum to one. The marginal probability of \(Y_1\) (test result) is the row sums: 19\% of tests are positive and 81\% of tests are negative. The marginal probability of \(Y_2\) is the column sums: 11\% of individuals are sick and 89\% are healthy. Given these marginals we can also compute conditional probabilities:
+
+\begin{itemize}
+\item
+  \(p(\text{positive}|\text{sick})= \frac{p(\text{positive},\text{sick})}{p(\text{sick})}=\frac{0.10}{0.11}=0.91\)
+\item
+  therefore \(p(\text{negative}|\text{sick})=0.09\).
+\end{itemize}
+
+Other conditional probabilities can be derived similarly.
+
+\hypertarget{continuous-case}{%
+\subsubsection{Continuous case}\label{continuous-case}}
+
+In the continuous case the definitions are analogous but summations are substituted with integrals. For instance,
+\[
+p(y_1)= \int_{y_2\in\mathbb{Y}_2}p(y_1,y_2)dy_2
+\]
+
+\hypertarget{expectation-and-variance}{%
+\subsection{Expectation and variance}\label{expectation-and-variance}}
+
+The mean or expectation of a random variable \(Y\) is
+
+\begin{itemize}
+\item
+  \(E(Y)=\sum_{y\in\mathbb{Y}} y p(y)\) in the discrete case;
+\item
+  \(E(Y)=\int_{y\in\mathbb{Y}}yp(y)dy\) in the continuous case.
+\end{itemize}
+
+The mean is the center of mass of the distribution.
+
+In addition to the location of a distribution we are often interested in how
+spread out it is. The most popular measure of spread is the variance of a
+distribution:
+\[
+V(Y)=E((Y-E(Y))^2)= E(Y^2) - E(Y)^2
+\]
+The variance is the average squared distance between values of \(Y\) and its mean \(E(Y)\). The standard deviation is the square root of the variance, and is on the same scale as \(Y\).
+
+Above we have defined conditional densities of the form \(p(y_2|Y_1=y_1)\). Since formally they are pdfs they have expectation and variance which are usually denoted as \(E(Y_2|Y_1=y_1)\) and \(V(Y_2|Y_1=y_1)\).
+
+Furthermore, it is often useful to express the mean and variance of a random variable \(Y_2\) in terms of the conditional mean and variance given some related quantity \(Y_1\). The mean of \(Y_2\) can be obtained by averaging the conditional mean over the marginal distribution of \(Y_1\):
+\[
+E(Y_2)=E(E(Y_2|Y_1=y_1)).
+\]
+Let's see why this is true:
+\begin{eqnarray*}
+E(Y_2) &=&\sum_{y_2\in\mathbb{Y}_2}y_2p(y_2)\\
+ &=&\sum_{y_2\in\mathbb{Y}_2}y_2\sum_{y_1\in\mathbb{Y}_1}p(y_1,y_2)\\
+ &=&\sum_{y_2\in\mathbb{Y}_2}\sum_{y_1\in\mathbb{Y}_1}y_2p(y_2|Y_1=y_1)p(y_1)\\
+ &=&\sum_{y_1\in\mathbb{Y}_1}p(y_1)\sum_{y_2\in\mathbb{Y}_2}y_2p(y_2|Y_1=y_1)\\
+ &=&\sum_{y_1\in\mathbb{Y}_1}p(y_1)E(Y_2|Y_1=y_1)\\
+ &=& E(E(Y_2|Y_1=y_1))
+\end{eqnarray*}
+
+The corresponding result for the variance includes two terms, the mean of the conditional
+variance and the variance of the conditional mean:
+\[
+V(Y_2) = E(V(Y_2|Y_1=y_1)) + V(E(Y_2|Y_1=y_1))
+\]
+
+\hypertarget{independence}{%
+\subsection{Independence}\label{independence}}
+
+We say that two random variables are independent if
+\[
+p(y_1,y_2) = p(y_1)p(y_2)
+\]
+that is if the joint distribution can be written as the product of the marginal distributions.
+
+In Bayesian statistics we usually make the assumption that we have independent random variables \(Y_1,Y_2,\dots,Y_N\) which all depend on a parameter \(\theta\), which is also believed to be random variable. We say that \(Y_1,\dots,Y_N\) are conditionally independent given \(\theta\) if
+\[
+p(y_1,\dots,y_N|\theta)=\prod_{i=1}^Np(y_i|\theta).
+\]
+Another way to say this is that \(Y_1,\dots,Y_N\) are conditionally independent and identically distributed (iid).
+
+Notice that in standard statistical practice when we analyze a sample we start with the assumption that the data are realizations of independent and identically distributed random variables (not conditionally, since the parameter is not considered random).
+
+\hypertarget{exchangeability}{%
+\section{Exchangeability}\label{exchangeability}}
+
+In many situations with several random variables, we would believe that the specific order of observation of these random variables is not important. For example, consider a random sample of 3 participants from an infinite population which may or may not have a property (1 or 0) It makes sense that
+\[
+p(1,0,0) = p(0,1,0) = p(0,0,1).
+\]
+Such a property is called \emph{exchangeability}.
+
+Let \(Y_1,\dots,Y_N\) be random variables. If \(p(y_1,\dots,y_N)=p(y_{\pi_1},\dots,y_{\pi_N})\) for all permutations \(\pi\) of \(\{1,\dots,N\}\), then \(Y_1,\dots,Y_N\) are exchangeable.
+
+Roughly speaking, \(Y_1,\dots, Y_n\) are exchangeable if the subscript labels convey no information about the outcomes.
+
+The following result (often called De Finetti's Theorem) tells us that it is sufficient to assume exchangeability for random variables to be (conditionally) iid.
+
+\[
+Y_1,\dots,Y_N \mbox{ are iid } \Longleftrightarrow Y_1,\dots,Y_n \mbox{ are exchangeable for all N's}
+\]
+
+So notice that in Bayesian statistics we are actually starting from a weaker assumption about the data-generating process.
+
 \hypertarget{whats-next}{%
 \section{What's next}\label{whats-next}}
 
 This introduction should have given you a feeling of what a Bayesian analysis entails and the various steps required. In the next chapters we will dig deeper into the various components of a Bayesian analysis, namely:
 
 \begin{itemize}
-\item
-  we will first discuss various interpretations of what probability is which will in a way motivate or justify the use of Bayesian methods in a variety of settings;
 \item
   we will learn how to compute posterior distributions for a variety of simple models;
 \item
