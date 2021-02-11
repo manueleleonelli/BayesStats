@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 The Binomial Model | An Introduction to Bayesian Statistics</title>
+  <meta name="description" content="This is a set of lecture notes." />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 The Binomial Model | An Introduction to Bayesian Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of lecture notes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 The Binomial Model | An Introduction to Bayesian Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of lecture notes." />
+  
+
+<meta name="author" content="Manuele Leonelli" />
+
+
+<meta name="date" content="2021-02-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Introduction to Bayesian Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#a-more-technical-discussion"><i class="fa fa-check"></i><b>1.1</b> A more technical discussion</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#a-first-example"><i class="fa fa-check"></i><b>1.2</b> A first example</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#why-bayesian-statistics"><i class="fa fa-check"></i><b>1.3</b> Why Bayesian statistics</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#a-bit-of-history"><i class="fa fa-check"></i><b>1.4</b> A bit of history</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#interpretations-of-probability"><i class="fa fa-check"></i><b>1.5</b> Interpretations of probability</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#a-review-of-probability"><i class="fa fa-check"></i><b>1.6</b> A review of probability</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#random-variables"><i class="fa fa-check"></i><b>1.6.1</b> Random variables</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#joint-distributions"><i class="fa fa-check"></i><b>1.6.2</b> Joint distributions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#expectation-and-variance"><i class="fa fa-check"></i><b>1.6.3</b> Expectation and variance</a></li>
+<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#independence"><i class="fa fa-check"></i><b>1.6.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exchangeability"><i class="fa fa-check"></i><b>1.7</b> Exchangeability</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#whats-next"><i class="fa fa-check"></i><b>1.8</b> What’s next</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="bin.html"><a href="bin.html"><i class="fa fa-check"></i><b>2</b> The Binomial Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="bin.html"><a href="bin.html#inference-using-a-uniform-prior"><i class="fa fa-check"></i><b>2.1</b> Inference Using a Uniform Prior</a></li>
+<li class="chapter" data-level="2.2" data-path="bin.html"><a href="bin.html#the-beta-distribution"><i class="fa fa-check"></i><b>2.2</b> The Beta Distribution</a></li>
+<li class="chapter" data-level="2.3" data-path="bin.html"><a href="bin.html#inference-using-a-beta-prior"><i class="fa fa-check"></i><b>2.3</b> Inference using a Beta Prior</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="bin.html"><a href="bin.html#uniform-as-beta"><i class="fa fa-check"></i><b>2.3.1</b> Uniform as Beta</a></li>
+<li class="chapter" data-level="2.3.2" data-path="bin.html"><a href="bin.html#a-generic-beta-prior"><i class="fa fa-check"></i><b>2.3.2</b> A Generic Beta Prior</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bin.html"><a href="bin.html#predictive-distribution"><i class="fa fa-check"></i><b>2.4</b> Predictive Distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to Bayesian Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bin" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> The Binomial Model</h1>
+<p>We now start looking at actual Bayesian inference for a variety of data types and models, starting from the simplest case of binary outcomes.</p>
+<p>Consider the following motivating example. A survey conducted in 2020 asked 2000 Spaniards whether they were happy or not. 920 of the respondents said they were indeed happy. Such a situation could be modeled using a <em>Binomial</em> model if we were to believe the following two assumptions:</p>
+<ul>
+<li><p>each respondent has a same unknown probability <span class="math inline">\(\theta\)</span> of replying yes;</p></li>
+<li><p>each respondent is independent of all others.</p></li>
+</ul>
+<p>Under these assumptions, let <span class="math inline">\(Y\)</span> be the random variable denoting the number of respondents that said they were happy. Then
+<span class="math display">\[
+P(Y=y|\theta) = \binom{n}{y}\theta^{y}(1-\theta)^{n-y}.
+\]</span>
+by recalling the form of the Binomial probabilities. In general we say that <span class="math inline">\(Y\)</span> follows a Binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span> if its pdf can be written as above. Then we also have that <span class="math inline">\(E(Y)=n\theta\)</span> and <span class="math inline">\(V(Y)=n\theta(1-\theta)\)</span>.</p>
+<p>Notice that we explicitly write <span class="math inline">\(P(Y=y|\theta)\)</span>, meaning that these probabilities are conditional on an unknown parameter <span class="math inline">\(\theta\)</span> denoting the probability that an individual is happy. The number <span class="math inline">\(n\)</span> is not considered random - the number of people interviewed. This is indeed usually fixed by design choices.</p>
+<p>Assume that we fixed <span class="math inline">\(\theta = 0.5\)</span>, an individual is equally likely to be happy/unhappy. Then the probability of observing 920 happy individuals out of 2000 is:
+<span class="math display">\[
+P(Y=920|\theta=0.5)=\binom{2000}{920}0.5^{920}(1-0.5)^{1080}.
+\]</span>
+Using R this number can be computed as</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="bin.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">920</span>, <span class="at">size =</span> <span class="dv">2000</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 2.953299e-05</code></pre>
+<p>The overall distribution of a Binomial with parameters <span class="math inline">\(n=2000\)</span> and <span class="math inline">\(\theta = 0.5\)</span> is reported in Figure <a href="bin.html#fig:dbinom">2.1</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="bin.html#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2000</span></span>
+<span id="cb4-2"><a href="bin.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, <span class="at">ymax =</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">2000</span>, <span class="at">prob =</span> <span class="fl">0.5</span>), <span class="at">ymin =</span> <span class="dv">0</span>, </span>
+<span id="cb4-3"><a href="bin.html#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span> <span class="st">&quot;linerange&quot;</span>,  <span class="at">xlab =</span> <span class="st">&quot;number of successes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="bin.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:dbinom"></span>
+<img src="BayesStats_files/figure-html/dbinom-1.png" alt="Probability density function of a Binomial with parameters 2000 and 0.5" width="50%" />
+<p class="caption">
+Figure 2.1: Probability density function of a Binomial with parameters 2000 and 0.5
+</p>
+</div>
+<p>Our aim in this chapter is to develop methods to answer the following question: given a sample <span class="math inline">\(y_1,\dots,y_N\)</span> of independent and identically distributed binary outcomes (just as in our happiness survey) and some prior distribution <span class="math inline">\(p(\theta)\)</span> for the parameter of success <span class="math inline">\(\theta\)</span>, what are our posterior beliefs <span class="math inline">\(p(\theta|y_1,\dots,y_n)\)</span> and how can we summarize them?</p>
+<div id="inference-using-a-uniform-prior" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Inference Using a Uniform Prior</h2>
+<p>Let’s consider again our happiness survey. We collected a sample <span class="math inline">\(y_1,\dots,y_{2000}\)</span> of binary outcomes happy/unhappy (1/0) of which 920 replied they were happy. The likelihood of this data is therefore
+<span class="math display">\[
+p(y|\theta)=\binom{n}{\sum_{i=1}^ny_i}\theta^{\sum_{i=1}^ny_i}(1-\theta)^{n-\sum_{i=1}^ny_i}
+\]</span>
+In order to complete our model definition we also need to define a prior distribution for the parameter <span class="math inline">\(\theta\)</span>, which takes values between zero and one.</p>
+<p>Let’s start choosing a uniform prior distribution between zero and one, that is:
+<span class="math display">\[
+p(\theta)=\left\{
+\begin{array}{ll}
+1, &amp; 0\leq \theta \leq 1\\
+0, &amp; \mbox{otherwise}
+\end{array}
+\right.
+\]</span>
+and reported in Figure <a href="bin.html#fig:unipdf">2.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unipdf"></span>
+<img src="BayesStats_files/figure-html/unipdf-1.png" alt="Probability density function of the Uniform between zero and one" width="50%" />
+<p class="caption">
+Figure 2.2: Probability density function of the Uniform between zero and one
+</p>
+</div>
+<p>The assumption of a Uniform distribution implies that the same probability is given to any subinterval of <span class="math inline">\([0,1]\)</span> of the same length. This is the simplest prior distribution we can choose.</p>
+<p>Given these prior and data-generating process our posterior is:
+<span class="math display">\[\begin{eqnarray*}
+p(\theta|y_1,\dots,y_{2000}) &amp;=&amp;\frac{p(y_1,\dots,y_{2000}|\theta)p(\theta)}{p(y_1,\dots,y_{2000})}\\
+&amp;=&amp;\frac{p(y_1,\dots,y_{2000}|\theta)\cdot 1}{p(y_1,\dots,y_{2000})}\\
+&amp;\propto&amp;p(y_1,\dots,y_{2000}|\theta)\\
+&amp;=&amp; \binom{n}{\sum_{i=1}^ny_i}\theta^{\sum_{i=1}^ny_i}(1-\theta)^{n-\sum_{i=1}^ny_i}\\
+&amp;\propto&amp; \theta^{\sum_{i=1}^ny_i}(1-\theta)^{n-\sum_{i=1}^ny_i}\\
+&amp;=&amp; \theta^{920}(1-\theta)^{1080}
+\end{eqnarray*}\]</span></p>
+<p>The expression <span class="math inline">\(\theta^{920}(1-\theta)^{1080}\)</span> is proportional to the posterior distribution <span class="math inline">\(p(\theta|y_1,\dots,y_{2000})\)</span>, meaning that it does not integrate to one. Using results from calculus it can be indeed shown that
+<span class="math display">\[
+\int_{0}^{1}\theta^{920}(1-\theta)^{1080}d\theta=\frac{\Gamma(921)\Gamma(1081)}{\Gamma(921 + 1081)}
+\]</span>
+where <span class="math inline">\(\Gamma(\cdot)\)</span> is the so-called Gamma function (its value for any <span class="math inline">\(x&gt;0\)</span> can be computed in <code>R</code> using <code>gamma(x)</code>).</p>
+<p>How is the above integral result useful to derive the form of the posterior? Recall that the posterior is
+<span class="math display">\[
+p(\theta|y_1,\dots,y_{2000}) = \theta^{920}(1-\theta)^{1080}\frac{1}{p(y_1,\dots,y_{2000})},
+\]</span>
+and it must be such that
+<span class="math display">\[
+\int_0^1p(\theta|y_1,\dots,y_{2000})d\theta = 1. 
+\]</span>
+Using everything that we have learned so far we can then deduce that
+<span class="math display">\[\begin{eqnarray*}
+1 &amp; = &amp; \int_0^1p(\theta|y_1,\dots,y_{2000})d\theta \\
+&amp; = &amp;  \int_0^1 \theta^{920}(1-\theta)^{1080}\frac{1}{p(y_1,\dots,y_{2000})}d\theta\\
+&amp; = &amp;\frac{1}{p(y_1,\dots,y_{2000})} \int_0^1 \theta^{920}(1-\theta)^{1080}d\theta\\
+&amp;= &amp; \frac{1}{p(y_1,\dots,y_{2000})} \frac{\Gamma(921)\Gamma(1081)}{\Gamma(921 + 1081)}
+\end{eqnarray*}\]</span>
+This implies that what we called the marginal likelihood
+<span class="math display">\[
+p(y_1,\dots,y_{2000})=\frac{\Gamma(921)\Gamma(1081)}{\Gamma(921 + 1081)}
+\]</span>
+and therefore the posterior is
+<span class="math display">\[
+p(\theta|y_1,\dots,y_{2000}) = \frac{\Gamma(921 + 1081)}{\Gamma(921)\Gamma(1081)}\theta^{920}(1-\theta)^{1080}.
+\]</span>
+Although you probably have never seen this expression, the above is the density of the so-called <em>Beta</em> distribution, which will be formally introduced next.</p>
+<p>Before this, let’s consider Figure <a href="bin.html#fig:binpostuni">2.3</a>. The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="bin.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="bin.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x, <span class="dv">921</span>, <span class="dv">1081</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Posterior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="bin.html#cb5-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dunif</span>(x),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Prior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb5-4"><a href="bin.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(theta)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;theta&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:binpostuni"></span>
+<img src="BayesStats_files/figure-html/binpostuni-1.png" alt="Prior and posterior distribution for the happiness survey" width="50%" />
+<p class="caption">
+Figure 2.3: Prior and posterior distribution for the happiness survey
+</p>
+</div>
+</div>
+<div id="the-beta-distribution" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> The Beta Distribution</h2>
+<p>A random variable <span class="math inline">\(\theta\)</span> is said to follow the Beta distributions with parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> if its pdf is
+<span class="math display">\[
+p(\theta)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}
+\]</span>
+for <span class="math inline">\(\theta\in[0,1]\)</span>. The pdf for various choices of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is reported in Figure <a href="bin.html#fig:dbeta">2.4</a>. Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=1\)</span>. Indeed,
+<span class="math display">\[
+p(\theta)=\frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}\theta^{0}(1-\theta)^{0}=\frac{1}{1\cdot 1} 1\cdot 1 = 1,
+\]</span>
+since <span class="math inline">\(\Gamma(x)=x!\)</span> if <span class="math inline">\(x&gt;1\)</span> and integer, and <span class="math inline">\(\Gamma(1)=1\)</span>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bin.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="bin.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="fl">0.5</span>,<span class="fl">0.5</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 0.5, b = 0.5&quot;</span>))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="bin.html#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">1</span>,<span class="dv">1</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 1, b = 1&quot;</span>))<span class="sc">+</span></span>
+<span id="cb6-4"><a href="bin.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">1</span>,<span class="dv">3</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 1, b = 3&quot;</span>))<span class="sc">+</span></span>
+<span id="cb6-5"><a href="bin.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">5</span>,<span class="dv">2</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 5, b = 2&quot;</span>))<span class="sc">+</span></span>
+<span id="cb6-6"><a href="bin.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(theta)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;theta&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Parameters&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:dbeta"></span>
+<img src="BayesStats_files/figure-html/dbeta-1.png" alt="Density of the Beta distribution for various choices of parameters." width="50%" />
+<p class="caption">
+Figure 2.4: Density of the Beta distribution for various choices of parameters.
+</p>
+</div>
+<p>If <span class="math inline">\(\theta\)</span> follows a Beta random variable with parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, one can prove that</p>
+<ul>
+<li><p><span class="math inline">\(E(\theta)=\frac{a}{a+b}\)</span></p></li>
+<li><p><span class="math inline">\(mode(\theta)=\frac{a-1}{(a-1)+(b-1)}\)</span> if <span class="math inline">\(a&gt;1\)</span> and <span class="math inline">\(b&gt;1\)</span></p></li>
+<li><p><span class="math inline">\(V(\theta)= \frac{ab}{(a+b)^2(a+b+1)}\)</span></p></li>
+</ul>
+</div>
+<div id="inference-using-a-beta-prior" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Inference using a Beta Prior</h2>
+<p>Now we turn our attention to cases where the parameter <span class="math inline">\(\theta\)</span> is given a Beta prior distribution. First let’s revisit the example of the prior uniform distribution.</p>
+<div id="uniform-as-beta" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Uniform as Beta</h3>
+<p>We have a sample <span class="math inline">\(y_1,\dots, y_n\)</span> of independent and identically distributed (same probability of success) binary outcomes, so that <span class="math inline">\(p(y_1,\dots,y_n|\theta)\)</span> is Binomial with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\theta\)</span>. The prior distribution for <span class="math inline">\(\theta\)</span> is uniform, which is equivalent to a Beta distribution with parameters <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=1\)</span>.</p>
+<p>Then the posterior is such that
+<span class="math display" id="eq:betapost">\[\begin{equation}
+p(\theta|y_1,\dots,y_n) \propto \theta^{\sum_{i=1}^ny_i}(1-\theta)^{n-\sum_{i=1}^ny_i} =\theta^y(1-\theta)^{n-y}
+ \tag{2.1}
+\end{equation}\]</span>
+where for simplicity we called <span class="math inline">\(\sum_{i=1}^ny_i=y\)</span>, the number of successes. The above expression is a function of <span class="math inline">\(\theta\)</span> and we can spot that it has the elements of a Beta distribution: it is only missing the ratio <span class="math inline">\(\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\)</span>. However, all terms involving <span class="math inline">\(\theta\)</span> of the pdf of a Beta are in the expression. In particular, the above expression must be proportional to the density of a Beta with parameter <span class="math inline">\(a= y+1\)</span> and <span class="math inline">\(b= n-y +1\)</span>. Notice in particular that the parameter <span class="math inline">\(a\)</span> of the posterior is the number of successes plus the parameter <span class="math inline">\(a=1\)</span> of the uniform prior and the parameter <span class="math inline">\(b\)</span> of the posterior is the number of failures plus the parameter <span class="math inline">\(b=1\)</span> of the prior.</p>
+<p>Let’s consider again the happiness survey data, where 920 individuals said that they were happy out of 2000. Using the properties of the Beta distribution, we then have that</p>
+<ul>
+<li><p><span class="math inline">\(E(\theta|y_1,\dots,y_n)= \frac{921}{2002}=0.46004\)</span>;</p></li>
+<li><p><span class="math inline">\(mode(\theta|y_1,\dots,y_n)=\frac{920}{2000}=0.46\)</span>;</p></li>
+<li><p><span class="math inline">\(V(\theta|y_1,\dots,y_n)= 0.00012\)</span></p></li>
+</ul>
+<p>So we actually derived the posterior distribution, which is Beta with parameters <span class="math inline">\(y+1\)</span> and <span class="math inline">\(n-y+1\)</span>, by looking at expression <a href="bin.html#eq:betapost">(2.1)</a> and recognizing that it must be proportional to the known Beta distribution. Furthermore, we also recognized the value of the parameters by comparing the expressions. This is a trick we will use multiple times which allows us to derive the posterior by only looking at
+<span class="math display">\[
+p(\theta|y)\propto p(y|\theta)p(\theta)
+\]</span>
+instead of
+<span class="math display">\[
+p(\theta|y) =  \frac{p(y|\theta)p(\theta)}{p(y)}
+\]</span>
+which requires the computation of <span class="math inline">\(p(y)\)</span> often involving complex integration.</p>
+</div>
+<div id="a-generic-beta-prior" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> A Generic Beta Prior</h3>
+<p>Let’s now take a more general approach and let’s suppose that <span class="math inline">\(\theta\)</span> is given a prior distribution <span class="math inline">\(p(\theta)\)</span> which is Beta with some parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. What is the form of the posterior?</p>
+<p><span class="math display">\[\begin{eqnarray*}
+p(\theta|y_1,\dots,y_n)&amp;\propto&amp; p(y_1,\dots,y_n|\theta)p(\theta)\\
+ &amp;= &amp; \binom{n}{y}\theta^y(1-\theta)^{n-y}\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}\\
+ &amp;\propto&amp; \theta^y(1-\theta)^{n-y}\theta^{a-1}(1-\theta)^{b-1}\\
+ &amp; = &amp; \theta^{y+a-1}(1-\theta)^{n-y + b -1}
+\end{eqnarray*}\]</span></p>
+<p>Using the same trick as before, we notice that the above expression is proportional to the density of a Beta distribution with parameters <span class="math inline">\(y+a\)</span> and <span class="math inline">\(n-y+b\)</span>. So we started with a prior Beta distribution and our posterior is again Beta. Such a property of a prior distribution <span class="math inline">\(p(\theta)\)</span> and a data-generating process <span class="math inline">\(p(y|\theta)\)</span> is usually referred to as <em>conjugacy</em>.</p>
+<p>A class of prior distributions <span class="math inline">\(\mathcal{P}\)</span> for <span class="math inline">\(\theta\)</span> is said to be <strong>conjugate</strong> for a data-generating process <span class="math inline">\(p(y|\theta)\)</span> if
+<span class="math display">\[
+p(\theta)\in\mathcal{P}\Rightarrow p(\theta|y)\in\mathcal{P}
+\]</span></p>
+<p>So the Beta distribution is the conjugate prior to the Binomial: a Beta prior combined to a Binomial likelihood gives a posterior distribution which is again Beta.</p>
+<p>Using the properties of the Beta distribution we can then derive that:</p>
+<ul>
+<li><p><span class="math inline">\(E(\theta|y_1,\dots,y_n)=\frac{a+y}{a+b+n}\)</span></p></li>
+<li><p><span class="math inline">\(mode(\theta|y_1,\dots,y_n)=\frac{a+y-1}{a+b+n-2}\)</span></p></li>
+<li><p><span class="math inline">\(V(\theta|y_1,\dots,y_n)=\frac{(a+y)(n-y+b)}{(n+a+b+1)(n+a+b)^2}\)</span></p></li>
+</ul>
+<p>Let’s look into the posterior mean more carefully. We can rewrite it as
+<span class="math display">\[\begin{eqnarray*}
+E(\theta|y_1,\dots,y_n)&amp;=&amp;\frac{a+y}{a+b+n}\\
+ &amp; = &amp; \frac{a+b}{a+b+n}\frac{a}{a+b} + \frac{n}{a+b+n}\frac{y}{n}\\
+ &amp; = &amp; \frac{a+b}{a+b+n}E(\theta) + \frac{n}{a+b+n}\bar{y}_n,
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(\bar{y}_n\)</span> is the sample mean.</p>
+<p>So the posterior mean is a weighted average between the prior mean <span class="math inline">\(E(\theta)\)</span> and the sample mean <span class="math inline">\(\bar{y}_n\)</span>. By looking at the weights we can also see that if <span class="math inline">\(n &gt;&gt; a+b\)</span> then <span class="math inline">\(\frac{a+b}{a+b+n}\approx 0\)</span> and <span class="math inline">\(\frac{n}{a+b+n}\approx 1\)</span> and therefore the posterior mean is equal to the sample mean. This means that if the sample size is very large, then our posterior beliefs are mostly driven by the data.</p>
+<p>The parameters of the prior Beta distribution can be interpreted as follows:</p>
+<ul>
+<li><p><span class="math inline">\(a+b\)</span> is a prior sample size: the larger this number the more emphasis we want to put on the prior;</p></li>
+<li><p><span class="math inline">\(a\)</span> is the prior number of successes;</p></li>
+<li><p><span class="math inline">\(b\)</span> is the prior number of failures;</p></li>
+</ul>
+<p>Figure <a href="bin.html#fig:effectbin">2.5</a> illustrates the effect of various parameter choices <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> for the prior distribution.</p>
+<div class="figure" style="text-align: center"><span id="fig:effectbin"></span>
+<img src="BayesStats_files/figure-html/effectbin-1.png" alt="Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500." width="672" />
+<p class="caption">
+Figure 2.5: Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500.
+</p>
+</div>
+</div>
+</div>
+<div id="predictive-distribution" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Predictive Distribution</h2>
+<p>An important feature of Bayesian inference is the existence of a <em>predictive distribution</em> which gives the probability of observing a specific new observation given that we have already observed a sample <span class="math inline">\(y_1,\dots,y_n\)</span>, that is <span class="math inline">\(p(\tilde{y}|y_1,\dots,y_n)\)</span> where <span class="math inline">\(\tilde{y}\)</span> is a possible value of the random variable of interest. In the specific case of a binary outcome, we can compute <span class="math inline">\(p(\tilde{y}=1|y_1,\dots,y_n)\)</span> the probability of observing a success given that we observed the sample.</p>
+<p>Let’s compute this probability.
+<span class="math display">\[\begin{eqnarray*}
+p(\tilde{y}=1|y_1,\dots,y_n)&amp;=&amp; \int_{0}^1p(\tilde{y}=1,\theta|y_1,\dots,y_n)d\theta\\
+&amp;=&amp; \int_{0}^1p(\tilde{y}=1|\theta,y_1,\dots,y_n)p(\theta|y_1,\dots,y_n)d\theta\\
+&amp;=&amp;\int_{0}^1\theta p(\theta|y_1,\dots,y_n)d\theta\\
+&amp;=&amp; E(\theta|y_1,\dots,y_n)
+\end{eqnarray*}\]</span>
+So the predictive probability of a success is equal to the posterior mean in the case of binary outcomes. We will see that in other cases it is not as easy to derive this distribution.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["BayesStats.pdf", "BayesStats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
