@@ -24,7 +24,7 @@
 <meta name="author" content="Manuele Leonelli" />
 
 
-<meta name="date" content="2021-02-11" />
+<meta name="date" content="2021-02-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="intro.html"/>
-
+<link rel="next" href="norm.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -166,6 +166,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="bin.html"><a href="bin.html#predictive-distribution"><i class="fa fa-check"></i><b>2.4</b> Predictive Distribution</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="norm.html"><a href="norm.html"><i class="fa fa-check"></i><b>3</b> The Normal Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="norm.html"><a href="norm.html#a-new-parameterization"><i class="fa fa-check"></i><b>3.1</b> A New Parameterization</a></li>
+<li class="chapter" data-level="3.2" data-path="norm.html"><a href="norm.html#estimating-a-normal-mean-with-known-precision"><i class="fa fa-check"></i><b>3.2</b> Estimating a Normal mean with known precision</a></li>
+<li class="chapter" data-level="3.3" data-path="norm.html"><a href="norm.html#assessing-the-quality-of-bayesian-estimation"><i class="fa fa-check"></i><b>3.3</b> Assessing the Quality of Bayesian Estimation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -207,13 +213,13 @@ P(Y=920|\theta=0.5)=\binom{2000}{920}0.5^{920}(1-0.5)^{1080}.
 Using R this number can be computed as</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="bin.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">920</span>, <span class="at">size =</span> <span class="dv">2000</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 2.953299e-05</code></pre>
-<p>The overall distribution of a Binomial with parameters <span class="math inline">\(n=2000\)</span> and <span class="math inline">\(\theta = 0.5\)</span> is reported in Figure <a href="bin.html#fig:dbinom">2.1</a>.</p>
+<p>The overall distribution of a Binomial with parameters <span class="math inline">\(n=2000\)</span> and <span class="math inline">\(\theta = 0.5\)</span> is reported in Figure <a href="bin.html#fig:dbinomi">2.1</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="bin.html#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2000</span></span>
 <span id="cb4-2"><a href="bin.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, <span class="at">ymax =</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">2000</span>, <span class="at">prob =</span> <span class="fl">0.5</span>), <span class="at">ymin =</span> <span class="dv">0</span>, </span>
 <span id="cb4-3"><a href="bin.html#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span> <span class="st">&quot;linerange&quot;</span>,  <span class="at">xlab =</span> <span class="st">&quot;number of successes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;probability&quot;</span>) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="bin.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:dbinom"></span>
-<img src="BayesStats_files/figure-html/dbinom-1.png" alt="Probability density function of a Binomial with parameters 2000 and 0.5" width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:dbinomi"></span>
+<img src="BayesStats_files/figure-html/dbinomi-1.png" alt="Probability density function of a Binomial with parameters 2000 and 0.5" width="50%" />
 <p class="caption">
 Figure 2.1: Probability density function of a Binomial with parameters 2000 and 0.5
 </p>
@@ -235,9 +241,9 @@ p(\theta)=\left\{
 \end{array}
 \right.
 \]</span>
-and reported in Figure <a href="bin.html#fig:unipdf">2.2</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unipdf"></span>
-<img src="BayesStats_files/figure-html/unipdf-1.png" alt="Probability density function of the Uniform between zero and one" width="50%" />
+and reported in Figure <a href="bin.html#fig:unipdfi">2.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unipdfi"></span>
+<img src="BayesStats_files/figure-html/unipdfi-1.png" alt="Probability density function of the Uniform between zero and one" width="50%" />
 <p class="caption">
 Figure 2.2: Probability density function of the Uniform between zero and one
 </p>
@@ -281,13 +287,13 @@ and therefore the posterior is
 p(\theta|y_1,\dots,y_{2000}) = \frac{\Gamma(921 + 1081)}{\Gamma(921)\Gamma(1081)}\theta^{920}(1-\theta)^{1080}.
 \]</span>
 Although you probably have never seen this expression, the above is the density of the so-called <em>Beta</em> distribution, which will be formally introduced next.</p>
-<p>Before this, let’s consider Figure <a href="bin.html#fig:binpostuni">2.3</a>. The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.</p>
+<p>Before this, let’s consider Figure <a href="bin.html#fig:binpostunii">2.3</a>. The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="bin.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="bin.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x, <span class="dv">921</span>, <span class="dv">1081</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Posterior&quot;</span>))<span class="sc">+</span></span>
 <span id="cb5-3"><a href="bin.html#cb5-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dunif</span>(x),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Prior&quot;</span>))<span class="sc">+</span></span>
 <span id="cb5-4"><a href="bin.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(theta)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;theta&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:binpostuni"></span>
-<img src="BayesStats_files/figure-html/binpostuni-1.png" alt="Prior and posterior distribution for the happiness survey" width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:binpostunii"></span>
+<img src="BayesStats_files/figure-html/binpostunii-1.png" alt="Prior and posterior distribution for the happiness survey" width="50%" />
 <p class="caption">
 Figure 2.3: Prior and posterior distribution for the happiness survey
 </p>
@@ -299,19 +305,19 @@ Figure 2.3: Prior and posterior distribution for the happiness survey
 <span class="math display">\[
 p(\theta)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}
 \]</span>
-for <span class="math inline">\(\theta\in[0,1]\)</span>. The pdf for various choices of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is reported in Figure <a href="bin.html#fig:dbeta">2.4</a>. Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=1\)</span>. Indeed,
+for <span class="math inline">\(\theta\in[0,1]\)</span>. The pdf for various choices of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is reported in Figure <a href="bin.html#fig:dbetai">2.4</a>. Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=1\)</span>. Indeed,
 <span class="math display">\[
 p(\theta)=\frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}\theta^{0}(1-\theta)^{0}=\frac{1}{1\cdot 1} 1\cdot 1 = 1,
 \]</span>
-since <span class="math inline">\(\Gamma(x)=x!\)</span> if <span class="math inline">\(x&gt;1\)</span> and integer, and <span class="math inline">\(\Gamma(1)=1\)</span>.</p>
+since <span class="math inline">\(\Gamma(x)=(x-1)!\)</span> if <span class="math inline">\(x&gt;1\)</span> and integer, and <span class="math inline">\(\Gamma(1)=1\)</span>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bin.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="bin.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="fl">0.5</span>,<span class="fl">0.5</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 0.5, b = 0.5&quot;</span>))<span class="sc">+</span></span>
 <span id="cb6-3"><a href="bin.html#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">1</span>,<span class="dv">1</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 1, b = 1&quot;</span>))<span class="sc">+</span></span>
 <span id="cb6-4"><a href="bin.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">1</span>,<span class="dv">3</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 1, b = 3&quot;</span>))<span class="sc">+</span></span>
 <span id="cb6-5"><a href="bin.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dbeta</span>(x,<span class="dv">5</span>,<span class="dv">2</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;a = 5, b = 2&quot;</span>))<span class="sc">+</span></span>
 <span id="cb6-6"><a href="bin.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(theta)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;theta&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Parameters&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:dbeta"></span>
-<img src="BayesStats_files/figure-html/dbeta-1.png" alt="Density of the Beta distribution for various choices of parameters." width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:dbetai"></span>
+<img src="BayesStats_files/figure-html/dbetai-1.png" alt="Density of the Beta distribution for various choices of parameters." width="50%" />
 <p class="caption">
 Figure 2.4: Density of the Beta distribution for various choices of parameters.
 </p>
@@ -386,9 +392,9 @@ where <span class="math inline">\(\bar{y}_n\)</span> is the sample mean.</p>
 <li><p><span class="math inline">\(a\)</span> is the prior number of successes;</p></li>
 <li><p><span class="math inline">\(b\)</span> is the prior number of failures;</p></li>
 </ul>
-<p>Figure <a href="bin.html#fig:effectbin">2.5</a> illustrates the effect of various parameter choices <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> for the prior distribution.</p>
-<div class="figure" style="text-align: center"><span id="fig:effectbin"></span>
-<img src="BayesStats_files/figure-html/effectbin-1.png" alt="Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500." width="672" />
+<p>Figure <a href="bin.html#fig:effectbini">2.5</a> illustrates the effect of various parameter choices <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> for the prior distribution.</p>
+<div class="figure" style="text-align: center"><span id="fig:effectbini"></span>
+<img src="BayesStats_files/figure-html/effectbini-1.png" alt="Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500." width="672" />
 <p class="caption">
 Figure 2.5: Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500.
 </p>
@@ -414,8 +420,8 @@ So the predictive probability of a success is equal to the posterior mean in the
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="norm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

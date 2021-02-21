@@ -25,9 +25,9 @@ Using R this number can be computed as
 dbinom(920, size = 2000, prob = 0.5)
 ```
 
-The overall distribution of a Binomial with parameters $n=2000$ and $\theta = 0.5$ is reported in Figure \@ref(fig:dbinom).
+The overall distribution of a Binomial with parameters $n=2000$ and $\theta = 0.5$ is reported in Figure \@ref(fig:dbinomi).
 
-```{r dbinom, fig.align='center',out.width="50%", fig.cap = "Probability density function of a Binomial with parameters 2000 and 0.5"}
+```{r dbinomi, fig.align='center',out.width="50%", fig.cap = "Probability density function of a Binomial with parameters 2000 and 0.5"}
 x <- 0:2000
 qplot(x, ymax = dbinom(x, size = 2000, prob = 0.5), ymin = 0, 
       geom = "linerange",  xlab = "number of successes", ylab = "probability") +
@@ -53,9 +53,9 @@ p(\theta)=\left\{
 \end{array}
 \right.
 \]
-and reported in Figure \@ref(fig:unipdf).
+and reported in Figure \@ref(fig:unipdfi).
 
-```{r unipdf, fig.align='center',fig.cap="Probability density function of the Uniform between zero and one", echo = F, warning = F, message= FALSE, out.width="50%"}
+```{r unipdfi, fig.align='center',fig.cap="Probability density function of the Uniform between zero and one", echo = F, warning = F, message= FALSE, out.width="50%"}
 library(ggplot2)
 x <- c(seq(-1,0,0.01),seq(0,1,0.01),seq(1,2,0.01))
 y <- c(rep(0,length(seq(-1,0,0.01))),rep(1,length(seq(0,1,0.01))),rep(0,length(seq(1,2,0.01))))
@@ -108,9 +108,9 @@ p(\theta|y_1,\dots,y_{2000}) = \frac{\Gamma(921 + 1081)}{\Gamma(921)\Gamma(1081)
 \]
 Although you probably have never seen this expression, the above is the density of the so-called *Beta* distribution, which will be formally introduced next.
 
-Before this, let's consider Figure \@ref(fig:binpostuni). The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.
+Before this, let's consider Figure \@ref(fig:binpostunii). The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.
 
-```{r binpostuni, fig.align='center',fig.cap="Prior and posterior distribution for the happiness survey", out.width="50%"}
+```{r binpostunii, fig.align='center',fig.cap="Prior and posterior distribution for the happiness survey", out.width="50%"}
 ggplot(data.frame(x=c(0,1)), aes(x)) +
   stat_function(fun= function(x) dbeta(x, 921, 1081),aes(colour="Posterior"))+
    stat_function(fun= function(x) dunif(x),aes(colour="Prior"))+
@@ -123,12 +123,12 @@ A random variable $\theta$ is said to follow the Beta distributions with paramet
 \[
 p(\theta)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}
 \]
-for $\theta\in[0,1]$. The pdf for various choices of $a$ and $b$ is reported in Figure \@ref(fig:dbeta). Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to $a=1$ and $b=1$. Indeed,
+for $\theta\in[0,1]$. The pdf for various choices of $a$ and $b$ is reported in Figure \@ref(fig:dbetai). Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to $a=1$ and $b=1$. Indeed,
 \[
 p(\theta)=\frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}\theta^{0}(1-\theta)^{0}=\frac{1}{1\cdot 1} 1\cdot 1 = 1,
 \]
-since $\Gamma(x)=x!$ if $x>1$ and integer, and $\Gamma(1)=1$.
-```{r dbeta, out.width="50%", fig.align='center', fig.cap="Density of the Beta distribution for various choices of parameters."}
+since $\Gamma(x)=(x-1)!$ if $x>1$ and integer, and $\Gamma(1)=1$.
+```{r dbetai, out.width="50%", fig.align='center', fig.cap="Density of the Beta distribution for various choices of parameters."}
 ggplot(data.frame(x=seq(0,1,0.01)), aes(x)) +
   stat_function(fun= function(x) dbeta(x,0.5,0.5),aes(colour="a = 0.5, b = 0.5"))+
      stat_function(fun= function(x) dbeta(x,1,1),aes(colour="a = 1, b = 1"))+
@@ -224,9 +224,9 @@ The parameters of the prior Beta distribution can be interpreted as follows:
  
  - $b$ is the prior number of failures;
  
-Figure \@ref(fig:effectbin) illustrates the effect of various parameter choices $a$ and $b$ for the prior distribution.
+Figure \@ref(fig:effectbini) illustrates the effect of various parameter choices $a$ and $b$ for the prior distribution.
  
-```{r effectbin, echo = F, fig.align='center',fig.cap="Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500."}
+```{r effectbini, echo = F, fig.align='center',fig.cap="Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500."}
 library(gridExtra)
 p1 <- ggplot(data.frame(x=c(0,1)), aes(x)) +
   stat_function(fun= function(x) dbeta(x, 925, 1085),aes(colour="Posterior"))+

@@ -117,7 +117,7 @@
 
 \title{An Introduction to Bayesian Statistics}
 \author{Manuele Leonelli}
-\date{2021-02-11}
+\date{2021-02-21}
 
 \begin{document}
 \maketitle
@@ -625,7 +625,7 @@ Using R this number can be computed as
 ## [1] 2.953299e-05
 \end{verbatim}
 
-The overall distribution of a Binomial with parameters \(n=2000\) and \(\theta = 0.5\) is reported in Figure \ref{fig:dbinom}.
+The overall distribution of a Binomial with parameters \(n=2000\) and \(\theta = 0.5\) is reported in Figure \ref{fig:dbinomi}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -638,11 +638,11 @@ The overall distribution of a Binomial with parameters \(n=2000\) and \(\theta =
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/dbinom-1} 
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/dbinomi-1} 
 
 }
 
-\caption{Probability density function of a Binomial with parameters 2000 and 0.5}\label{fig:dbinom}
+\caption{Probability density function of a Binomial with parameters 2000 and 0.5}\label{fig:dbinomi}
 \end{figure}
 
 Our aim in this chapter is to develop methods to answer the following question: given a sample \(y_1,\dots,y_N\) of independent and identically distributed binary outcomes (just as in our happiness survey) and some prior distribution \(p(\theta)\) for the parameter of success \(\theta\), what are our posterior beliefs \(p(\theta|y_1,\dots,y_n)\) and how can we summarize them?
@@ -665,15 +665,15 @@ p(\theta)=\left\{
 \end{array}
 \right.
 \]
-and reported in Figure \ref{fig:unipdf}.
+and reported in Figure \ref{fig:unipdfi}.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unipdf-1} 
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unipdfi-1} 
 
 }
 
-\caption{Probability density function of the Uniform between zero and one}\label{fig:unipdf}
+\caption{Probability density function of the Uniform between zero and one}\label{fig:unipdfi}
 \end{figure}
 
 The assumption of a Uniform distribution implies that the same probability is given to any subinterval of \([0,1]\) of the same length. This is the simplest prior distribution we can choose.
@@ -719,7 +719,7 @@ p(\theta|y_1,\dots,y_{2000}) = \frac{\Gamma(921 + 1081)}{\Gamma(921)\Gamma(1081)
 \]
 Although you probably have never seen this expression, the above is the density of the so-called \emph{Beta} distribution, which will be formally introduced next.
 
-Before this, let's consider Figure \ref{fig:binpostuni}. The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.
+Before this, let's consider Figure \ref{fig:binpostunii}. The prior distribution is reported by the blue line and is the flat uniform. Given that we observed 920 individuals who are happy our posterior distribution now reflects the information in the sample and it peaks around the sample proportion 920/2000=0.46. Furthermore, the variance has decreased and the density is concentrated around the sample proportion.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -732,11 +732,11 @@ Before this, let's consider Figure \ref{fig:binpostuni}. The prior distribution 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/binpostuni-1} 
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/binpostunii-1} 
 
 }
 
-\caption{Prior and posterior distribution for the happiness survey}\label{fig:binpostuni}
+\caption{Prior and posterior distribution for the happiness survey}\label{fig:binpostunii}
 \end{figure}
 
 \hypertarget{the-beta-distribution}{%
@@ -746,11 +746,11 @@ A random variable \(\theta\) is said to follow the Beta distributions with param
 \[
 p(\theta)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}(1-\theta)^{b-1}
 \]
-for \(\theta\in[0,1]\). The pdf for various choices of \(a\) and \(b\) is reported in Figure \ref{fig:dbeta}. Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to \(a=1\) and \(b=1\). Indeed,
+for \(\theta\in[0,1]\). The pdf for various choices of \(a\) and \(b\) is reported in Figure \ref{fig:dbetai}. Importantly, we can see that the Uniform distribution is a special case of the Beta distribution when parameters are fixed to \(a=1\) and \(b=1\). Indeed,
 \[
 p(\theta)=\frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}\theta^{0}(1-\theta)^{0}=\frac{1}{1\cdot 1} 1\cdot 1 = 1,
 \]
-since \(\Gamma(x)=x!\) if \(x>1\) and integer, and \(\Gamma(1)=1\).
+since \(\Gamma(x)=(x-1)!\) if \(x>1\) and integer, and \(\Gamma(1)=1\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -765,11 +765,11 @@ since \(\Gamma(x)=x!\) if \(x>1\) and integer, and \(\Gamma(1)=1\).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/dbeta-1} 
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/dbetai-1} 
 
 }
 
-\caption{Density of the Beta distribution for various choices of parameters.}\label{fig:dbeta}
+\caption{Density of the Beta distribution for various choices of parameters.}\label{fig:dbetai}
 \end{figure}
 
 If \(\theta\) follows a Beta random variable with parameters \(a\) and \(b\), one can prove that
@@ -874,15 +874,15 @@ The parameters of the prior Beta distribution can be interpreted as follows:
   \(b\) is the prior number of failures;
 \end{itemize}
 
-Figure \ref{fig:effectbin} illustrates the effect of various parameter choices \(a\) and \(b\) for the prior distribution.
+Figure \ref{fig:effectbini} illustrates the effect of various parameter choices \(a\) and \(b\) for the prior distribution.
 
 \begin{figure}
 
-{\centering \includegraphics{BayesStats_files/figure-latex/effectbin-1} 
+{\centering \includegraphics{BayesStats_files/figure-latex/effectbini-1} 
 
 }
 
-\caption{Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500.}\label{fig:effectbin}
+\caption{Posterior distribution for different prior distributions. Sample proportion - black vertical line. Top left: a = b = 5; Top right: a = b = 50; Bottom left: a = b = 500; Bottom right: a = b = 1500.}\label{fig:effectbini}
 \end{figure}
 
 \hypertarget{predictive-distribution}{%
@@ -898,6 +898,368 @@ p(\tilde{y}=1|y_1,\dots,y_n)&=& \int_{0}^1p(\tilde{y}=1,\theta|y_1,\dots,y_n)d\t
 &=& E(\theta|y_1,\dots,y_n)
 \end{eqnarray*}
 So the predictive probability of a success is equal to the posterior mean in the case of binary outcomes. We will see that in other cases it is not as easy to derive this distribution.
+
+\hypertarget{norm}{%
+\chapter{The Normal Model}\label{norm}}
+
+The most commonly utilized model for data analysis is based on the Normal (or Gaussian) distribution. There are multiple reasons for this, the most notable one is the central limit theorem which tells us that the mean of a sequence of independent and identically distributed random variables has a distribution which is approximately Normal. Another property that makes the Normal so appealing is that its parameters are exactly the mean and the variance of the distribution, two quantities that are often of primary interest.
+
+In this chapter we will develop methods to perform Bayesian inference over the parameters of the Normal distribution. Recall that we say that \(Y\) follows a Normal distribution with parameters \(\mu\) and \(\sigma^2\) if its pdf can be written as:
+\[
+f(y|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(y-\mu)^2\right)
+\]
+The parameter \(\mu\) is the mean of the distribution, i.e.~\(E(Y)=\mu\) and \(\sigma^2\) is the variance of the distribution, i.e.~\(V(Y)=\sigma^2\).
+
+Let's recall how the parameters of the Normal distribution are usually estimated in the frequentist setting. Suppose you have a sample \(y_1,\dots,y_n\). Since \(\mu\) is the mean of the distribution it is estimated using the sample mean \(\bar{y}_n\) where
+\[
+\bar{y}_n=\frac{1}{n}\sum_{i=1}^ny_i.
+\]
+Since \(\sigma^2\) is the variance, it is estimated using the sample variance \(s^2_n\) where
+\[
+s^2_n=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar{y}_n)^2.
+\]
+
+As an illustration we consider data about the 2018 military expenditure of 148 countries. We have information about the logarithm of the expenses in that year in dollars. The histogram in Figure \ref{fig:histexp} shows the distribution of the expenses. From the histogram we can see that the data loosely exhibits the bell-shape behavior of the Normal distribution. Therefore we could believe a Normal model is appropriate.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/histexp-1} 
+
+}
+
+\caption{Logarithm of the military expenditure of 148 countries in 2018}\label{fig:histexp}
+\end{figure}
+
+Using the sample mean and the sample variance to estimate \(\mu\) and \(\sigma^2\), we get
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Expense))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.65345
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Expense))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.532075
+\end{verbatim}
+
+as our estimates. The estimated normal distribution is reported in Figure \ref{fig:histexpi}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(Expense))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{..density..))}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }\AttributeTok{args =}
+    \FunctionTok{list}\NormalTok{(}\AttributeTok{mean=}\FunctionTok{mean}\NormalTok{(}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Expense)), }\AttributeTok{sd =} \FunctionTok{sd}\NormalTok{(}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Expense))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/histexpi-1} 
+
+}
+
+\caption{Logarithm of the military expenditure of 148 countries in 2018 with estimated Normal line}\label{fig:histexpi}
+\end{figure}
+
+\hypertarget{a-new-parameterization}{%
+\section{A New Parameterization}\label{a-new-parameterization}}
+
+For reasons that will become apparent in the next few paragraphs, it is often simpler to use a different parameterization of the Normal distribution in Bayesian inference. Specifically, the parameter \(\sigma^2\) representing the variance is replaced by its inverse \(\tau^2=1/\sigma^2\) called the \emph{precision}.
+
+We say that a random variable \(Y\) is Normal with mean \(\mu\) and precision \(\tau^2\) if its density can be written as
+\[
+f(y|\mu,\tau^2)=\sqrt{\frac{\tau^2}{2\pi}}\exp\left(-\frac{\tau^2(y-\mu)^2}{2}\right).
+\]
+
+Figure \ref{fig:normprec} illustrates the effect of the precision parameter on the density of the Normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x=}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\FloatTok{0.01}\NormalTok{)), }\FunctionTok{aes}\NormalTok{(x)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"tau = 1"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,}\DecValTok{0}\NormalTok{,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"tau = 2"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,}\DecValTok{0}\NormalTok{,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FloatTok{0.5}\NormalTok{)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"tau = 0.5"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"p(y)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Parameter"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/normprec-1} 
+
+}
+
+\caption{Density of the Normal for various choices of precision.}\label{fig:normprec}
+\end{figure}
+
+In the frequentist setting the precision \(\tau^2\) can be estimated as \(1/s^2_n\) since \(\tau^2=1/\sigma^2\).
+
+\hypertarget{estimating-a-normal-mean-with-known-precision}{%
+\section{Estimating a Normal mean with known precision}\label{estimating-a-normal-mean-with-known-precision}}
+
+We start investigating the simpler case where we assume \(\tau^2\) to be known and we only want to perform inference on the unknown mean \(\mu\). Suppose we observed a sample \(y=(y_1,\dots,y_n)\) and assume the data-generating process is Normal with unknown mean \(\mu\) and known precision \(\tau^2\). The likelihood of the data is
+\begin{eqnarray*}
+p(y|\mu,\tau^2)&=&\prod_{i=1}^np(y_i|\mu,\tau^2)\\
+&=&\prod_{i=1}^n\sqrt{\frac{\tau^2}{2\pi}}\exp\left(-\frac{\tau^2(y_i-\mu)^2}{2}\right)\\
+&=& \left(\frac{\tau^2}{2\pi}\right)^{n/2}\exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)
+\end{eqnarray*}
+
+Given a prior \(p(\mu|\tau^2)\), our aim is to derive the posterior distribution of \(\mu\) given that we observed the sample \(y\) and having fixed the precision \(\tau^2\). Therefore
+\begin{eqnarray*}
+p(\mu|y,\tau^2)&\propto& p(y|\mu,\tau^2)p(\mu,\tau^2)\\
+&=& \left(\frac{\tau^2}{2\pi}\right)^{n/2}\exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)p(\mu|\tau^2)\\
+&\propto& \exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)p(\mu|\tau^2)
+\end{eqnarray*}
+
+The exponential term in the expression above can be written, by forgetting of the summation, as
+\[
+\exp(a(\mu-b)^2)
+\]
+for two values \(a\) and \(b\) not involving \(\mu\). Therefore the posterior can be written as
+\[
+p(\mu|y,\tau^2) \propto \exp(a(\mu-b)^2)p(\mu|\tau^2)
+\]
+Recall that a class of prior distributions is conjugate for a likelihood/data-generating process if the resulting posterior distribution is in the same class. So we might wonder if there exists such a prior for the mean of a Normal with known precision.
+
+Suppose that \(p(\mu|\tau^2)\propto\exp(c(\mu-d)^2)\). This means that the prior for \(\mu\) is Normal. Then
+\begin{eqnarray*}
+p(\mu|y,\tau^2)&\propto& \exp(a(\mu-b)^2)\exp(c(\mu-d)^2)\\
+&=& \exp(a\mu^2-2ab\mu + ab^2 +c\mu^2 -2cd\mu +cd^2)\\
+&\propto&\exp((a+c)\mu^2 -2(ab+cd)\mu)
+\end{eqnarray*}
+We can recognize that the posterior is proportional to an exponential involving a term \(\mu^2\) and a term \(-2\mu\). It therefore must be proportional to a Normal distribution for \(\mu\).
+
+So giving a Normal distribution to \(p(\mu|\tau^2)\) and assuming that the likelihood \(p(y|\mu,\tau^2)\) is also Normal, we derived that the posterior \(p(\mu|y,\tau^2)\) is also Normal. Therefore the Normal prior is conjugate for the mean parameter of the Normal distribution.
+
+We have not actually derived yet what the parameters of the Normal posterior are. We will not do it since this involves some tedious algebra. We will only state the result. Suppose the prior \(p(\mu|\tau^2)\) is Normal with mean \(\mu_0\) and precision \(\tau^2_0\) and the likelihood \(p(y|\mu,\tau^2)\) of the sample \(y=(y_1,\dots,y_n)\) is Normal with unknown mean \(\mu\) and known precision \(\tau^2\), then the posterior \(p(\mu|y,\tau^2)\) is Normal with mean \(\mu_n\) and precision \(\tau^2_n\), where
+\[
+\tau^2_n=\tau_0^2+n\tau^2
+\]
+and
+\[
+\mu_n = \frac{\tau_0^2}{\tau^2_0+n\tau^2}\mu_0 + \left(1-\frac{\tau^2_0}{\tau_0^2+n\tau^2}\right)\bar{y}_n,
+\]
+where \(\bar{y}_n\) is the sample mean.
+
+Let's look closer at the two expressions. The posterior precision \(\tau^2_n\) is the sum of the prior precision \(\tau_0^2\) and \(n\) times the known likelihood precision \(\tau^2\). As the the sample size increases, the precision increases by a rate driven by \(\tau^2\). A different way to look at it is by saying that as the sample size increases the posterior variance decreases.
+
+The posterior mean \(\mu_n\) is a weighted average between the prior mean \(\mu_0\) and the sample mean \(\bar{y}_n\). As the sample size \(n\) increases the smaller \(\tau^2_0/(\tau_0^2+n\tau^2)\) becomes and consequently the less weight is given to the prior mean.
+
+Let's go back to our data about military expenditure. We noticed that the data could be modeled as a Normal distribution. Let's take a Bayesian approach to estimate the mean and let's assume the precision is known. For this example we set it to the sample precision which is equal to
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{var}\NormalTok{(}\FunctionTok{log}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{Expense)),}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.18
+\end{verbatim}
+
+We need to define a prior distribution for the unknown mean \(\mu\). As we have seen a Normal distribution is conjugate and therefore we choose it. We need to select the parameters of the prior. Historical data tells us that the average log-expenditure in the previous year was 19.6 and therefore we choose this value as mean of the prior distribution. Let's pick different choices of precision and let's observe the form of the posterior.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau }\OtherTok{\textless{}{-}} \FloatTok{0.18}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{148}
+\NormalTok{mu0 }\OtherTok{\textless{}{-}} \FloatTok{19.6}
+\NormalTok{ybar }\OtherTok{\textless{}{-}} \FloatTok{20.65}
+\NormalTok{tau0 }\OtherTok{\textless{}{-}} \FloatTok{0.0001}
+\NormalTok{taun }\OtherTok{\textless{}{-}}\NormalTok{ tau0 }\SpecialCharTok{+}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{tau}
+\NormalTok{mun }\OtherTok{\textless{}{-}}\NormalTok{ (tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{mu0 }\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{ybar}
+\FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(Expense))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{..density..)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mu0,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{tau0)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"prior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mun,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{taun)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"posterior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ ybar)}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"p(y)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Tau0  = 0.0001"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau0 }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+\NormalTok{taun }\OtherTok{\textless{}{-}}\NormalTok{ tau0 }\SpecialCharTok{+}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{tau}
+\NormalTok{mun }\OtherTok{\textless{}{-}}\NormalTok{ (tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{mu0 }\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{ybar}
+\FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(Expense))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{..density..)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mu0,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{tau0)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"prior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mun,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{taun)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"posterior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ ybar)}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"p(y)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"tau = 0.1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unnamed-chunk-5-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau0 }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{taun }\OtherTok{\textless{}{-}}\NormalTok{ tau0 }\SpecialCharTok{+}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{tau}
+\NormalTok{mun }\OtherTok{\textless{}{-}}\NormalTok{ (tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{mu0 }\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{ybar}
+\FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(Expense))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{..density..)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mu0,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{tau0)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"prior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mun,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{taun)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"posterior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ ybar)}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"p(y)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"tau = 10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unnamed-chunk-5-3} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau0 }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{taun }\OtherTok{\textless{}{-}}\NormalTok{ tau0 }\SpecialCharTok{+}\NormalTok{ n}\SpecialCharTok{*}\NormalTok{tau}
+\NormalTok{mun }\OtherTok{\textless{}{-}}\NormalTok{ (tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{mu0 }\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{tau0}\SpecialCharTok{/}\NormalTok{taun)}\SpecialCharTok{*}\NormalTok{ybar}
+\FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(Expense))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{..density..)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mu0,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{tau0)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"prior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun=} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,mun,}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{taun)),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"posterior"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ ybar)}\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"p(y)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"tau = 100"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/unnamed-chunk-5-4} \end{center}
+
+The higher the prior precision, the more effect it has on the posterior. For the first two plots, where precision was really small, the posterior distribution is centered at the sample mean. Conversely, for the last two plots where the prior precision was much larger, the posterior is shifted towards the prior and in between the prior mean and the sample mean.
+
+Choosing the prior precision \(\tau_0^2\) is based upon how strongly we believe the prior mean is close to the true mean. A possible way to set such a parameter is by letting \(\tau_0^2 = \kappa_0 \tau^2\), where \(\kappa_0\) is some imaginary sample size that we used to come up with the prior mean. The larger \(\kappa_0\) the stronger the effect of the prior on the posterior. If the prior precision is so set, the posterior mean can be derived as
+\[
+\mu_n= \frac{\kappa_0}{\kappa_0+n}\mu_0+ \left(1-\frac{\kappa_0}{\kappa_0+n}\right)\bar{y}_n
+\]
+and the posterior precision is \((\kappa_0+n)\tau\).
+
+\hypertarget{assessing-the-quality-of-bayesian-estimation}{%
+\section{Assessing the Quality of Bayesian Estimation}\label{assessing-the-quality-of-bayesian-estimation}}
+
+The final aim of statistical inference, either frequentist of Bayesian, is to come up with an estimate of an unknown parameter. A point estimator is a function which using the data comes up with a single number which hopefully should be close to the true unknown value of the parameter.
+
+Suppose for a minute we take a frequentist approach and we want to estimate the parameter \(\mu\) of a Normal distribution. Using a sample, as already mentioned, we would use the sample mean to estimate \(\mu\). Notice that the sample mean \(\bar{y}_n\) is itself a random variable and as such it has an expectation and a variance. You may have already seen that
+\[
+E(\bar{y}_n)= \mu \mbox{ and } V(\bar{y}_n)= \sigma^2/n,
+\]
+where \(\sigma^2\) is the known variance of the Normal. Since \(E(\bar{y}_n)=\mu\) we say that \(\bar{y}_n\) is unbiased for \(\mu\).
+
+A point estimator, say \(\hat\mu\), for a parameter \(\mu\) is said to be \emph{unbiased} if \(E(\hat\mu)=\mu\). The \emph{Bias} of \(\hat\mu\) for \(\mu\) is \(Bias(\hat\mu)=E(\hat\mu)-\mu\). Therefore \(\hat\mu\) is unbiased if \(Bias(\hat\mu)=0\).
+
+Clearly, having an estimator which is unbiased is desirable since on avarage that estimator will be equal to the true parameter. We have already seen that the frequentist estimator of \(\mu\) is unbiased.
+
+Let's consider the Bayesian approach. Given a fixed known precision, we derived the posterior distribution of the mean \(\mu\) of the Normal. A possible point estimator is the mean of the posterior distribution: call \(\hat\mu_B = E(\mu_n)\). Then
+\[
+E(\hat\mu_B)=E(w\mu_0+(1-w)\bar{y}_n)=w\mu_0+(1-w)E(\bar{y}_n)=w\mu_0+(1-w)\mu,
+\]
+for some weights \(w\). The weights are generally different from zero and therefore \(E(\hat\mu_B)\neq \mu\) unless \(\mu_0=\mu\): the prior mean was exactly equal to the true unknown mean.
+
+So it seems that the Bayesian estimator has a worse performance than the frequentist one. However, consider Figure \ref{fig:est} where the distribution of two estimators for a parameter are plotted. The true value of the parameter is given by the black vertical line. In this case we could possibly prefer the red estimator since we would expect such an estimator to give values that are close to the true value, although biased. The blue estimator, although unbiased, has such a high variance that we could expect parameter estimates that are really far away from the true value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{y=}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\FloatTok{0.01}\NormalTok{)),}\FunctionTok{aes}\NormalTok{(y))}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{0}\NormalTok{,}\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"Unbiased"}\NormalTok{),}\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{)}\SpecialCharTok{+}
+   \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{dnorm}\NormalTok{(x,}\SpecialCharTok{{-}}\FloatTok{0.3}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"Biased"}\NormalTok{),}\AttributeTok{lwd=}\FloatTok{1.2}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{theme\_bw}\NormalTok{()}\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Estimator"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/est-1} 
+
+}
+
+\caption{Distribution of two estimators for an unknown parameter}\label{fig:est}
+\end{figure}
+
+Therefore a more appropriate way to assess the quality of an estimator is by using a measure that also takes into account the variance of the estimator. One such measure is the so-called \emph{mean-squared error} (MSE).
+
+The MSE of an estimator \(\hat\mu\) for a parameter \(\mu\) is defined as \(MSE(\hat\mu)=V(\hat\mu)+Bias(\hat\mu)^2\).
+
+In order to derive the MSE, we first need to derive the variance. Recall that \(V(\bar{y}_n)=\sigma^2/n\), whilst
+\[
+V(\hat\mu_B)=V(w\mu_0+(1-w)\bar{y}_n)=(1-w)^2V(\bar{y}_n)=(1-w)^2\sigma^2/n.
+\]
+
+Therefore
+\[
+MSE(\bar{y}_n)=V(\bar{y}_n)+0=\sigma^2/n
+\]
+whilst, noting that
+\[
+Bias(\hat\mu_B)=w\mu_0+(1-w)\mu-\mu=w(\mu_0-\mu)
+\]
+we have that
+\[
+MSE(\hat\mu_B)=V(\hat\mu_B)+Bias(\hat\mu_B)^2=(1-w)^2\sigma^2/n+w^2(\mu_0-\mu)^2.
+\]
+Consider the setup of a prior precision equal to \(\kappa_0\tau^2\), where \(\kappa_0\) is an imaginary sample size. Then we saw that the weight \(w\) is equal to \(\kappa_0/(\kappa_0+n)\) and the above expression can be written as
+\[
+MSE(\hat\mu_B)=\frac{n^2}{(\kappa_0+n)^2}\frac{\sigma^2}{n}+\frac{\kappa_0^2}{(\kappa_0+n)^2}(\mu_0-\mu)^2.
+\]
+
+Now the question is: when is the MSE of the Bayesian estimator smaller than the MSE of \(\bar{y}_n\)? We are asking when does the inequality
+\[
+\frac{n^2}{(\kappa_0+n)^2}\frac{\sigma^2}{n}+\frac{\kappa_0^2}{(\kappa_0+n)^2}(\mu_0-\mu)^2 < \frac{\sigma^2}{n}
+\]
+hold?
+Using some algebra one can rewrite the inequality as
+\[
+(\mu_0-\mu)^2< \sigma^2\left(\frac{1}{n}+ \frac{2}{\kappa_0}\right)
+\]
+Whether the inequality holds depends on a variety of factors, but perhaps surprisingly it does in many cases. So in general the Bayesian estimator has a smaller MSE than the frequentist one.
+
+In order to illustrate this consider the military expenditure data and suppose we want to estimate the expenditure of European countries. Suppose also that we do not have any particular prior information about these countries and therefore we choose the same prior mean as before of 19.6. Now suppose the true expenditure for these countries is \(\mu=24.3\) and \(\tau^2=1/\sigma^2=1/40\). The MSE is therefore
+\[
+MSE(\bar{y}_n)=\frac{40}{n}
+\]
+\[
+MSE(\hat\mu_B)=(1-w)^2\frac{40}{n}+w^2(19.6-24.3)^2=(1-w)^2\frac{40}{n}+w^222.09
+\]
+where \(w=\kappa_0/(\kappa_0+n)\).
+
+Figure \ref{fig:mse} reports the ratio \(MSE(\hat\mu_B)/MSE(\bar{y}_n)\) for various choices of \(\kappa_0\) and \(n\). The smaller the ratio, the better the Bayesian estimator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ratio }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n,kappa)\{}
+\NormalTok{  ((n}\SpecialCharTok{/}\NormalTok{(kappa}\SpecialCharTok{+}\NormalTok{n))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{40}\SpecialCharTok{/}\NormalTok{n)}\SpecialCharTok{+}\NormalTok{(kappa}\SpecialCharTok{/}\NormalTok{(kappa}\SpecialCharTok{+}\NormalTok{n))}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FloatTok{22.09}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{40}\SpecialCharTok{/}\NormalTok{n)}
+\NormalTok{\}}
+\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\FunctionTok{ratio}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{lwd =}\DecValTok{2}\NormalTok{,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.3}\NormalTok{),}\AttributeTok{xlab=}\StringTok{"n"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"ratio"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\FunctionTok{ratio}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\DecValTok{3}\NormalTok{),}\AttributeTok{lwd =}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\FunctionTok{ratio}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\DecValTok{5}\NormalTok{),}\AttributeTok{lwd=}\DecValTok{2}\NormalTok{,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{1}\NormalTok{,}\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{BayesStats_files/figure-latex/mse-1} 
+
+}
+
+\caption{Ratio of the MSE for various choices of kappa0 and n. kappa0 = 1 (black line), kappa0 = 3 (red line), kappa0 = 5 (blue line).}\label{fig:mse}
+\end{figure}
+
+Notice that when \(\kappa_0 = 1\) or \(3\) the Bayes estimate has lower MSE than the sample mean, especially when the sample size is low. This is because even though the prior guess \(\mu_0 = 19.6\) is seemingly way off, it is not actually that far
+off when considering the uncertainty in our sample data. A choice of \(\kappa_0 = 5\) on the other hand puts more weight on the value of 19.6, and the corresponding estimator has a generally higher MSE than the sample mean. As \(n\) increases, the bias of each of the estimators shrinks to zero, and the MSEs converge to the common value of \(\sigma^2/n\).
 
   \bibliography{book.bib,packages.bib}
 

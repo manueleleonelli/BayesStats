@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 The Normal Model | An Introduction to Bayesian Statistics</title>
+  <meta name="description" content="This is a set of lecture notes." />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 The Normal Model | An Introduction to Bayesian Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of lecture notes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 The Normal Model | An Introduction to Bayesian Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of lecture notes." />
+  
+
+<meta name="author" content="Manuele Leonelli" />
+
+
+<meta name="date" content="2021-02-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bin.html"/>
+
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Introduction to Bayesian Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#a-more-technical-discussion"><i class="fa fa-check"></i><b>1.1</b> A more technical discussion</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#a-first-example"><i class="fa fa-check"></i><b>1.2</b> A first example</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#why-bayesian-statistics"><i class="fa fa-check"></i><b>1.3</b> Why Bayesian statistics</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#a-bit-of-history"><i class="fa fa-check"></i><b>1.4</b> A bit of history</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#interpretations-of-probability"><i class="fa fa-check"></i><b>1.5</b> Interpretations of probability</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#a-review-of-probability"><i class="fa fa-check"></i><b>1.6</b> A review of probability</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#random-variables"><i class="fa fa-check"></i><b>1.6.1</b> Random variables</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#joint-distributions"><i class="fa fa-check"></i><b>1.6.2</b> Joint distributions</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#expectation-and-variance"><i class="fa fa-check"></i><b>1.6.3</b> Expectation and variance</a></li>
+<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#independence"><i class="fa fa-check"></i><b>1.6.4</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exchangeability"><i class="fa fa-check"></i><b>1.7</b> Exchangeability</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#whats-next"><i class="fa fa-check"></i><b>1.8</b> What’s next</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="bin.html"><a href="bin.html"><i class="fa fa-check"></i><b>2</b> The Binomial Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="bin.html"><a href="bin.html#inference-using-a-uniform-prior"><i class="fa fa-check"></i><b>2.1</b> Inference Using a Uniform Prior</a></li>
+<li class="chapter" data-level="2.2" data-path="bin.html"><a href="bin.html#the-beta-distribution"><i class="fa fa-check"></i><b>2.2</b> The Beta Distribution</a></li>
+<li class="chapter" data-level="2.3" data-path="bin.html"><a href="bin.html#inference-using-a-beta-prior"><i class="fa fa-check"></i><b>2.3</b> Inference using a Beta Prior</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="bin.html"><a href="bin.html#uniform-as-beta"><i class="fa fa-check"></i><b>2.3.1</b> Uniform as Beta</a></li>
+<li class="chapter" data-level="2.3.2" data-path="bin.html"><a href="bin.html#a-generic-beta-prior"><i class="fa fa-check"></i><b>2.3.2</b> A Generic Beta Prior</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bin.html"><a href="bin.html#predictive-distribution"><i class="fa fa-check"></i><b>2.4</b> Predictive Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="norm.html"><a href="norm.html"><i class="fa fa-check"></i><b>3</b> The Normal Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="norm.html"><a href="norm.html#a-new-parameterization"><i class="fa fa-check"></i><b>3.1</b> A New Parameterization</a></li>
+<li class="chapter" data-level="3.2" data-path="norm.html"><a href="norm.html#estimating-a-normal-mean-with-known-precision"><i class="fa fa-check"></i><b>3.2</b> Estimating a Normal mean with known precision</a></li>
+<li class="chapter" data-level="3.3" data-path="norm.html"><a href="norm.html#assessing-the-quality-of-bayesian-estimation"><i class="fa fa-check"></i><b>3.3</b> Assessing the Quality of Bayesian Estimation</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to Bayesian Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="norm" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> The Normal Model</h1>
+<p>The most commonly utilized model for data analysis is based on the Normal (or Gaussian) distribution. There are multiple reasons for this, the most notable one is the central limit theorem which tells us that the mean of a sequence of independent and identically distributed random variables has a distribution which is approximately Normal. Another property that makes the Normal so appealing is that its parameters are exactly the mean and the variance of the distribution, two quantities that are often of primary interest.</p>
+<p>In this chapter we will develop methods to perform Bayesian inference over the parameters of the Normal distribution. Recall that we say that <span class="math inline">\(Y\)</span> follows a Normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> if its pdf can be written as:
+<span class="math display">\[
+f(y|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(y-\mu)^2\right)
+\]</span>
+The parameter <span class="math inline">\(\mu\)</span> is the mean of the distribution, i.e. <span class="math inline">\(E(Y)=\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> is the variance of the distribution, i.e. <span class="math inline">\(V(Y)=\sigma^2\)</span>.</p>
+<p>Let’s recall how the parameters of the Normal distribution are usually estimated in the frequentist setting. Suppose you have a sample <span class="math inline">\(y_1,\dots,y_n\)</span>. Since <span class="math inline">\(\mu\)</span> is the mean of the distribution it is estimated using the sample mean <span class="math inline">\(\bar{y}_n\)</span> where
+<span class="math display">\[
+\bar{y}_n=\frac{1}{n}\sum_{i=1}^ny_i.
+\]</span>
+Since <span class="math inline">\(\sigma^2\)</span> is the variance, it is estimated using the sample variance <span class="math inline">\(s^2_n\)</span> where
+<span class="math display">\[
+s^2_n=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar{y}_n)^2.
+\]</span></p>
+<p>As an illustration we consider data about the 2018 military expenditure of 148 countries. We have information about the logarithm of the expenses in that year in dollars. The histogram in Figure <a href="norm.html#fig:histexp">3.1</a> shows the distribution of the expenses. From the histogram we can see that the data loosely exhibits the bell-shape behavior of the Normal distribution. Therefore we could believe a Normal model is appropriate.</p>
+<div class="figure" style="text-align: center"><span id="fig:histexp"></span>
+<img src="BayesStats_files/figure-html/histexp-1.png" alt="Logarithm of the military expenditure of 148 countries in 2018" width="50%" />
+<p class="caption">
+Figure 3.1: Logarithm of the military expenditure of 148 countries in 2018
+</p>
+</div>
+<p>Using the sample mean and the sample variance to estimate <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, we get</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="norm.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">log</span>(data<span class="sc">$</span>Expense))</span></code></pre></div>
+<pre><code>## [1] 20.65345</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="norm.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="fu">log</span>(data<span class="sc">$</span>Expense))</span></code></pre></div>
+<pre><code>## [1] 5.532075</code></pre>
+<p>as our estimates. The estimated normal distribution is reported in Figure <a href="norm.html#fig:histexpi">3.2</a>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="norm.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data,<span class="fu">aes</span>(<span class="fu">log</span>(Expense))) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="norm.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..))<span class="sc">+</span></span>
+<span id="cb11-3"><a href="norm.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb11-4"><a href="norm.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span></span>
+<span id="cb11-5"><a href="norm.html#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">mean=</span><span class="fu">mean</span>(<span class="fu">log</span>(data<span class="sc">$</span>Expense)), <span class="at">sd =</span> <span class="fu">sd</span>(<span class="fu">log</span>(data<span class="sc">$</span>Expense))))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:histexpi"></span>
+<img src="BayesStats_files/figure-html/histexpi-1.png" alt="Logarithm of the military expenditure of 148 countries in 2018 with estimated Normal line" width="50%" />
+<p class="caption">
+Figure 3.2: Logarithm of the military expenditure of 148 countries in 2018 with estimated Normal line
+</p>
+</div>
+<div id="a-new-parameterization" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> A New Parameterization</h2>
+<p>For reasons that will become apparent in the next few paragraphs, it is often simpler to use a different parameterization of the Normal distribution in Bayesian inference. Specifically, the parameter <span class="math inline">\(\sigma^2\)</span> representing the variance is replaced by its inverse <span class="math inline">\(\tau^2=1/\sigma^2\)</span> called the <em>precision</em>.</p>
+<p>We say that a random variable <span class="math inline">\(Y\)</span> is Normal with mean <span class="math inline">\(\mu\)</span> and precision <span class="math inline">\(\tau^2\)</span> if its density can be written as
+<span class="math display">\[
+f(y|\mu,\tau^2)=\sqrt{\frac{\tau^2}{2\pi}}\exp\left(-\frac{\tau^2(y-\mu)^2}{2}\right).
+\]</span></p>
+<p>Figure <a href="norm.html#fig:normprec">3.3</a> illustrates the effect of the precision parameter on the density of the Normal distribution.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="norm.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="fl">0.01</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="norm.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,<span class="dv">0</span>,<span class="dv">1</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;tau = 1&quot;</span>))<span class="sc">+</span></span>
+<span id="cb12-3"><a href="norm.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,<span class="dv">0</span>,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;tau = 2&quot;</span>))<span class="sc">+</span></span>
+<span id="cb12-4"><a href="norm.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,<span class="dv">0</span>,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="fl">0.5</span>)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;tau = 0.5&quot;</span>))<span class="sc">+</span></span>
+<span id="cb12-5"><a href="norm.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(y)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Parameter&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:normprec"></span>
+<img src="BayesStats_files/figure-html/normprec-1.png" alt="Density of the Normal for various choices of precision." width="50%" />
+<p class="caption">
+Figure 3.3: Density of the Normal for various choices of precision.
+</p>
+</div>
+<p>In the frequentist setting the precision <span class="math inline">\(\tau^2\)</span> can be estimated as <span class="math inline">\(1/s^2_n\)</span> since <span class="math inline">\(\tau^2=1/\sigma^2\)</span>.</p>
+</div>
+<div id="estimating-a-normal-mean-with-known-precision" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Estimating a Normal mean with known precision</h2>
+<p>We start investigating the simpler case where we assume <span class="math inline">\(\tau^2\)</span> to be known and we only want to perform inference on the unknown mean <span class="math inline">\(\mu\)</span>. Suppose we observed a sample <span class="math inline">\(y=(y_1,\dots,y_n)\)</span> and assume the data-generating process is Normal with unknown mean <span class="math inline">\(\mu\)</span> and known precision <span class="math inline">\(\tau^2\)</span>. The likelihood of the data is
+<span class="math display">\[\begin{eqnarray*}
+p(y|\mu,\tau^2)&amp;=&amp;\prod_{i=1}^np(y_i|\mu,\tau^2)\\
+&amp;=&amp;\prod_{i=1}^n\sqrt{\frac{\tau^2}{2\pi}}\exp\left(-\frac{\tau^2(y_i-\mu)^2}{2}\right)\\
+&amp;=&amp; \left(\frac{\tau^2}{2\pi}\right)^{n/2}\exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)
+\end{eqnarray*}\]</span></p>
+<p>Given a prior <span class="math inline">\(p(\mu|\tau^2)\)</span>, our aim is to derive the posterior distribution of <span class="math inline">\(\mu\)</span> given that we observed the sample <span class="math inline">\(y\)</span> and having fixed the precision <span class="math inline">\(\tau^2\)</span>. Therefore
+<span class="math display">\[\begin{eqnarray*}
+p(\mu|y,\tau^2)&amp;\propto&amp; p(y|\mu,\tau^2)p(\mu,\tau^2)\\
+&amp;=&amp; \left(\frac{\tau^2}{2\pi}\right)^{n/2}\exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)p(\mu|\tau^2)\\
+&amp;\propto&amp; \exp\left(-\frac{\tau^2}{2}\sum_{i=1}^n(y_i-\mu)^2\right)p(\mu|\tau^2)
+\end{eqnarray*}\]</span></p>
+<p>The exponential term in the expression above can be written, by forgetting of the summation, as
+<span class="math display">\[
+\exp(a(\mu-b)^2)
+\]</span>
+for two values <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> not involving <span class="math inline">\(\mu\)</span>. Therefore the posterior can be written as
+<span class="math display">\[
+p(\mu|y,\tau^2) \propto \exp(a(\mu-b)^2)p(\mu|\tau^2)
+\]</span>
+Recall that a class of prior distributions is conjugate for a likelihood/data-generating process if the resulting posterior distribution is in the same class. So we might wonder if there exists such a prior for the mean of a Normal with known precision.</p>
+<p>Suppose that <span class="math inline">\(p(\mu|\tau^2)\propto\exp(c(\mu-d)^2)\)</span>. This means that the prior for <span class="math inline">\(\mu\)</span> is Normal. Then
+<span class="math display">\[\begin{eqnarray*}
+p(\mu|y,\tau^2)&amp;\propto&amp; \exp(a(\mu-b)^2)\exp(c(\mu-d)^2)\\
+&amp;=&amp; \exp(a\mu^2-2ab\mu + ab^2 +c\mu^2 -2cd\mu +cd^2)\\
+&amp;\propto&amp;\exp((a+c)\mu^2 -2(ab+cd)\mu)
+\end{eqnarray*}\]</span>
+We can recognize that the posterior is proportional to an exponential involving a term <span class="math inline">\(\mu^2\)</span> and a term <span class="math inline">\(-2\mu\)</span>. It therefore must be proportional to a Normal distribution for <span class="math inline">\(\mu\)</span>.</p>
+<p>So giving a Normal distribution to <span class="math inline">\(p(\mu|\tau^2)\)</span> and assuming that the likelihood <span class="math inline">\(p(y|\mu,\tau^2)\)</span> is also Normal, we derived that the posterior <span class="math inline">\(p(\mu|y,\tau^2)\)</span> is also Normal. Therefore the Normal prior is conjugate for the mean parameter of the Normal distribution.</p>
+<p>We have not actually derived yet what the parameters of the Normal posterior are. We will not do it since this involves some tedious algebra. We will only state the result. Suppose the prior <span class="math inline">\(p(\mu|\tau^2)\)</span> is Normal with mean <span class="math inline">\(\mu_0\)</span> and precision <span class="math inline">\(\tau^2_0\)</span> and the likelihood <span class="math inline">\(p(y|\mu,\tau^2)\)</span> of the sample <span class="math inline">\(y=(y_1,\dots,y_n)\)</span> is Normal with unknown mean <span class="math inline">\(\mu\)</span> and known precision <span class="math inline">\(\tau^2\)</span>, then the posterior <span class="math inline">\(p(\mu|y,\tau^2)\)</span> is Normal with mean <span class="math inline">\(\mu_n\)</span> and precision <span class="math inline">\(\tau^2_n\)</span>, where
+<span class="math display">\[
+\tau^2_n=\tau_0^2+n\tau^2
+\]</span>
+and
+<span class="math display">\[
+\mu_n = \frac{\tau_0^2}{\tau^2_0+n\tau^2}\mu_0 + \left(1-\frac{\tau^2_0}{\tau_0^2+n\tau^2}\right)\bar{y}_n,
+\]</span>
+where <span class="math inline">\(\bar{y}_n\)</span> is the sample mean.</p>
+<p>Let’s look closer at the two expressions. The posterior precision <span class="math inline">\(\tau^2_n\)</span> is the sum of the prior precision <span class="math inline">\(\tau_0^2\)</span> and <span class="math inline">\(n\)</span> times the known likelihood precision <span class="math inline">\(\tau^2\)</span>. As the the sample size increases, the precision increases by a rate driven by <span class="math inline">\(\tau^2\)</span>. A different way to look at it is by saying that as the sample size increases the posterior variance decreases.</p>
+<p>The posterior mean <span class="math inline">\(\mu_n\)</span> is a weighted average between the prior mean <span class="math inline">\(\mu_0\)</span> and the sample mean <span class="math inline">\(\bar{y}_n\)</span>. As the sample size <span class="math inline">\(n\)</span> increases the smaller <span class="math inline">\(\tau^2_0/(\tau_0^2+n\tau^2)\)</span> becomes and consequently the less weight is given to the prior mean.</p>
+<p>Let’s go back to our data about military expenditure. We noticed that the data could be modeled as a Normal distribution. Let’s take a Bayesian approach to estimate the mean and let’s assume the precision is known. For this example we set it to the sample precision which is equal to</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="norm.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">var</span>(<span class="fu">log</span>(data<span class="sc">$</span>Expense)),<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.18</code></pre>
+<p>We need to define a prior distribution for the unknown mean <span class="math inline">\(\mu\)</span>. As we have seen a Normal distribution is conjugate and therefore we choose it. We need to select the parameters of the prior. Historical data tells us that the average log-expenditure in the previous year was 19.6 and therefore we choose this value as mean of the prior distribution. Let’s pick different choices of precision and let’s observe the form of the posterior.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="norm.html#cb15-1" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">0.18</span></span>
+<span id="cb15-2"><a href="norm.html#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">148</span></span>
+<span id="cb15-3"><a href="norm.html#cb15-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="fl">19.6</span></span>
+<span id="cb15-4"><a href="norm.html#cb15-4" aria-hidden="true" tabindex="-1"></a>ybar <span class="ot">&lt;-</span> <span class="fl">20.65</span></span>
+<span id="cb15-5"><a href="norm.html#cb15-5" aria-hidden="true" tabindex="-1"></a>tau0 <span class="ot">&lt;-</span> <span class="fl">0.0001</span></span>
+<span id="cb15-6"><a href="norm.html#cb15-6" aria-hidden="true" tabindex="-1"></a>taun <span class="ot">&lt;-</span> tau0 <span class="sc">+</span> n<span class="sc">*</span>tau</span>
+<span id="cb15-7"><a href="norm.html#cb15-7" aria-hidden="true" tabindex="-1"></a>mun <span class="ot">&lt;-</span> (tau0<span class="sc">/</span>taun)<span class="sc">*</span>mu0 <span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>tau0<span class="sc">/</span>taun)<span class="sc">*</span>ybar</span>
+<span id="cb15-8"><a href="norm.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data,<span class="fu">aes</span>(<span class="fu">log</span>(Expense))) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="norm.html#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="norm.html#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mu0,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>tau0)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;prior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb15-11"><a href="norm.html#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mun,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>taun)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;posterior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb15-12"><a href="norm.html#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> ybar)<span class="sc">+</span></span>
+<span id="cb15-13"><a href="norm.html#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(y)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Tau0  = 0.0001&quot;</span>)</span></code></pre></div>
+<p><img src="BayesStats_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="norm.html#cb16-1" aria-hidden="true" tabindex="-1"></a>tau0 <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb16-2"><a href="norm.html#cb16-2" aria-hidden="true" tabindex="-1"></a>taun <span class="ot">&lt;-</span> tau0 <span class="sc">+</span> n<span class="sc">*</span>tau</span>
+<span id="cb16-3"><a href="norm.html#cb16-3" aria-hidden="true" tabindex="-1"></a>mun <span class="ot">&lt;-</span> (tau0<span class="sc">/</span>taun)<span class="sc">*</span>mu0 <span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>tau0<span class="sc">/</span>taun)<span class="sc">*</span>ybar</span>
+<span id="cb16-4"><a href="norm.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data,<span class="fu">aes</span>(<span class="fu">log</span>(Expense))) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="norm.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="norm.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mu0,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>tau0)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;prior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb16-7"><a href="norm.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mun,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>taun)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;posterior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb16-8"><a href="norm.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> ybar)<span class="sc">+</span></span>
+<span id="cb16-9"><a href="norm.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(y)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;tau = 0.1&quot;</span>)</span></code></pre></div>
+<p><img src="BayesStats_files/figure-html/unnamed-chunk-5-2.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="norm.html#cb17-1" aria-hidden="true" tabindex="-1"></a>tau0 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb17-2"><a href="norm.html#cb17-2" aria-hidden="true" tabindex="-1"></a>taun <span class="ot">&lt;-</span> tau0 <span class="sc">+</span> n<span class="sc">*</span>tau</span>
+<span id="cb17-3"><a href="norm.html#cb17-3" aria-hidden="true" tabindex="-1"></a>mun <span class="ot">&lt;-</span> (tau0<span class="sc">/</span>taun)<span class="sc">*</span>mu0 <span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>tau0<span class="sc">/</span>taun)<span class="sc">*</span>ybar</span>
+<span id="cb17-4"><a href="norm.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data,<span class="fu">aes</span>(<span class="fu">log</span>(Expense))) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="norm.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="norm.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mu0,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>tau0)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;prior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb17-7"><a href="norm.html#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mun,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>taun)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;posterior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb17-8"><a href="norm.html#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> ybar)<span class="sc">+</span></span>
+<span id="cb17-9"><a href="norm.html#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(y)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;tau = 10&quot;</span>)</span></code></pre></div>
+<p><img src="BayesStats_files/figure-html/unnamed-chunk-5-3.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="norm.html#cb18-1" aria-hidden="true" tabindex="-1"></a>tau0 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb18-2"><a href="norm.html#cb18-2" aria-hidden="true" tabindex="-1"></a>taun <span class="ot">&lt;-</span> tau0 <span class="sc">+</span> n<span class="sc">*</span>tau</span>
+<span id="cb18-3"><a href="norm.html#cb18-3" aria-hidden="true" tabindex="-1"></a>mun <span class="ot">&lt;-</span> (tau0<span class="sc">/</span>taun)<span class="sc">*</span>mu0 <span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>tau0<span class="sc">/</span>taun)<span class="sc">*</span>ybar</span>
+<span id="cb18-4"><a href="norm.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data,<span class="fu">aes</span>(<span class="fu">log</span>(Expense))) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="norm.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="norm.html#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mu0,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>tau0)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;prior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb18-7"><a href="norm.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun=</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,mun,<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>taun)),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;posterior&quot;</span>))<span class="sc">+</span></span>
+<span id="cb18-8"><a href="norm.html#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> ybar)<span class="sc">+</span></span>
+<span id="cb18-9"><a href="norm.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;p(y)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;tau = 100&quot;</span>)</span></code></pre></div>
+<p><img src="BayesStats_files/figure-html/unnamed-chunk-5-4.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>The higher the prior precision, the more effect it has on the posterior. For the first two plots, where precision was really small, the posterior distribution is centered at the sample mean. Conversely, for the last two plots where the prior precision was much larger, the posterior is shifted towards the prior and in between the prior mean and the sample mean.</p>
+<p>Choosing the prior precision <span class="math inline">\(\tau_0^2\)</span> is based upon how strongly we believe the prior mean is close to the true mean. A possible way to set such a parameter is by letting <span class="math inline">\(\tau_0^2 = \kappa_0 \tau^2\)</span>, where <span class="math inline">\(\kappa_0\)</span> is some imaginary sample size that we used to come up with the prior mean. The larger <span class="math inline">\(\kappa_0\)</span> the stronger the effect of the prior on the posterior. If the prior precision is so set, the posterior mean can be derived as
+<span class="math display">\[
+\mu_n= \frac{\kappa_0}{\kappa_0+n}\mu_0+ \left(1-\frac{\kappa_0}{\kappa_0+n}\right)\bar{y}_n
+\]</span>
+and the posterior precision is <span class="math inline">\((\kappa_0+n)\tau\)</span>.</p>
+</div>
+<div id="assessing-the-quality-of-bayesian-estimation" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Assessing the Quality of Bayesian Estimation</h2>
+<p>The final aim of statistical inference, either frequentist of Bayesian, is to come up with an estimate of an unknown parameter. A point estimator is a function which using the data comes up with a single number which hopefully should be close to the true unknown value of the parameter.</p>
+<p>Suppose for a minute we take a frequentist approach and we want to estimate the parameter <span class="math inline">\(\mu\)</span> of a Normal distribution. Using a sample, as already mentioned, we would use the sample mean to estimate <span class="math inline">\(\mu\)</span>. Notice that the sample mean <span class="math inline">\(\bar{y}_n\)</span> is itself a random variable and as such it has an expectation and a variance. You may have already seen that
+<span class="math display">\[
+E(\bar{y}_n)= \mu \mbox{ and } V(\bar{y}_n)= \sigma^2/n,
+\]</span>
+where <span class="math inline">\(\sigma^2\)</span> is the known variance of the Normal. Since <span class="math inline">\(E(\bar{y}_n)=\mu\)</span> we say that <span class="math inline">\(\bar{y}_n\)</span> is unbiased for <span class="math inline">\(\mu\)</span>.</p>
+<p>A point estimator, say <span class="math inline">\(\hat\mu\)</span>, for a parameter <span class="math inline">\(\mu\)</span> is said to be <em>unbiased</em> if <span class="math inline">\(E(\hat\mu)=\mu\)</span>. The <em>Bias</em> of <span class="math inline">\(\hat\mu\)</span> for <span class="math inline">\(\mu\)</span> is <span class="math inline">\(Bias(\hat\mu)=E(\hat\mu)-\mu\)</span>. Therefore <span class="math inline">\(\hat\mu\)</span> is unbiased if <span class="math inline">\(Bias(\hat\mu)=0\)</span>.</p>
+<p>Clearly, having an estimator which is unbiased is desirable since on avarage that estimator will be equal to the true parameter. We have already seen that the frequentist estimator of <span class="math inline">\(\mu\)</span> is unbiased.</p>
+<p>Let’s consider the Bayesian approach. Given a fixed known precision, we derived the posterior distribution of the mean <span class="math inline">\(\mu\)</span> of the Normal. A possible point estimator is the mean of the posterior distribution: call <span class="math inline">\(\hat\mu_B = E(\mu_n)\)</span>. Then
+<span class="math display">\[
+E(\hat\mu_B)=E(w\mu_0+(1-w)\bar{y}_n)=w\mu_0+(1-w)E(\bar{y}_n)=w\mu_0+(1-w)\mu,
+\]</span>
+for some weights <span class="math inline">\(w\)</span>. The weights are generally different from zero and therefore <span class="math inline">\(E(\hat\mu_B)\neq \mu\)</span> unless <span class="math inline">\(\mu_0=\mu\)</span>: the prior mean was exactly equal to the true unknown mean.</p>
+<p>So it seems that the Bayesian estimator has a worse performance than the frequentist one. However, consider Figure <a href="norm.html#fig:est">3.4</a> where the distribution of two estimators for a parameter are plotted. The true value of the parameter is given by the black vertical line. In this case we could possibly prefer the red estimator since we would expect such an estimator to give values that are close to the true value, although biased. The blue estimator, although unbiased, has such a high variance that we could expect parameter estimates that are really far away from the true value.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="norm.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">y=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>)),<span class="fu">aes</span>(y))<span class="sc">+</span></span>
+<span id="cb19-2"><a href="norm.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>,<span class="at">lwd=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb19-3"><a href="norm.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,<span class="dv">0</span>,<span class="dv">4</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Unbiased&quot;</span>),<span class="at">lwd=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb19-4"><a href="norm.html#cb19-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x,<span class="sc">-</span><span class="fl">0.3</span>,<span class="dv">1</span>),<span class="fu">aes</span>(<span class="at">colour=</span><span class="st">&quot;Biased&quot;</span>),<span class="at">lwd=</span><span class="fl">1.2</span>)<span class="sc">+</span> </span>
+<span id="cb19-5"><a href="norm.html#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span> <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Estimator&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:est"></span>
+<img src="BayesStats_files/figure-html/est-1.png" alt="Distribution of two estimators for an unknown parameter" width="50%" />
+<p class="caption">
+Figure 3.4: Distribution of two estimators for an unknown parameter
+</p>
+</div>
+<p>Therefore a more appropriate way to assess the quality of an estimator is by using a measure that also takes into account the variance of the estimator. One such measure is the so-called <em>mean-squared error</em> (MSE).</p>
+<p>The MSE of an estimator <span class="math inline">\(\hat\mu\)</span> for a parameter <span class="math inline">\(\mu\)</span> is defined as <span class="math inline">\(MSE(\hat\mu)=V(\hat\mu)+Bias(\hat\mu)^2\)</span>.</p>
+<p>In order to derive the MSE, we first need to derive the variance. Recall that <span class="math inline">\(V(\bar{y}_n)=\sigma^2/n\)</span>, whilst
+<span class="math display">\[
+V(\hat\mu_B)=V(w\mu_0+(1-w)\bar{y}_n)=(1-w)^2V(\bar{y}_n)=(1-w)^2\sigma^2/n.
+\]</span></p>
+<p>Therefore
+<span class="math display">\[
+MSE(\bar{y}_n)=V(\bar{y}_n)+0=\sigma^2/n
+\]</span>
+whilst, noting that
+<span class="math display">\[
+Bias(\hat\mu_B)=w\mu_0+(1-w)\mu-\mu=w(\mu_0-\mu)
+\]</span>
+we have that
+<span class="math display">\[
+MSE(\hat\mu_B)=V(\hat\mu_B)+Bias(\hat\mu_B)^2=(1-w)^2\sigma^2/n+w^2(\mu_0-\mu)^2.
+\]</span>
+Consider the setup of a prior precision equal to <span class="math inline">\(\kappa_0\tau^2\)</span>, where <span class="math inline">\(\kappa_0\)</span> is an imaginary sample size. Then we saw that the weight <span class="math inline">\(w\)</span> is equal to <span class="math inline">\(\kappa_0/(\kappa_0+n)\)</span> and the above expression can be written as
+<span class="math display">\[
+MSE(\hat\mu_B)=\frac{n^2}{(\kappa_0+n)^2}\frac{\sigma^2}{n}+\frac{\kappa_0^2}{(\kappa_0+n)^2}(\mu_0-\mu)^2.
+\]</span></p>
+<p>Now the question is: when is the MSE of the Bayesian estimator smaller than the MSE of <span class="math inline">\(\bar{y}_n\)</span>? We are asking when does the inequality
+<span class="math display">\[
+\frac{n^2}{(\kappa_0+n)^2}\frac{\sigma^2}{n}+\frac{\kappa_0^2}{(\kappa_0+n)^2}(\mu_0-\mu)^2 &lt; \frac{\sigma^2}{n}
+\]</span>
+hold?
+Using some algebra one can rewrite the inequality as
+<span class="math display">\[
+(\mu_0-\mu)^2&lt; \sigma^2\left(\frac{1}{n}+ \frac{2}{\kappa_0}\right)
+\]</span>
+Whether the inequality holds depends on a variety of factors, but perhaps surprisingly it does in many cases. So in general the Bayesian estimator has a smaller MSE than the frequentist one.</p>
+<p>In order to illustrate this consider the military expenditure data and suppose we want to estimate the expenditure of European countries. Suppose also that we do not have any particular prior information about these countries and therefore we choose the same prior mean as before of 19.6. Now suppose the true expenditure for these countries is <span class="math inline">\(\mu=24.3\)</span> and <span class="math inline">\(\tau^2=1/\sigma^2=1/40\)</span>. The MSE is therefore
+<span class="math display">\[
+MSE(\bar{y}_n)=\frac{40}{n}
+\]</span>
+<span class="math display">\[
+MSE(\hat\mu_B)=(1-w)^2\frac{40}{n}+w^2(19.6-24.3)^2=(1-w)^2\frac{40}{n}+w^222.09
+\]</span>
+where <span class="math inline">\(w=\kappa_0/(\kappa_0+n)\)</span>.</p>
+<p>Figure <a href="norm.html#fig:mse">3.5</a> reports the ratio <span class="math inline">\(MSE(\hat\mu_B)/MSE(\bar{y}_n)\)</span> for various choices of <span class="math inline">\(\kappa_0\)</span> and <span class="math inline">\(n\)</span>. The smaller the ratio, the better the Bayesian estimator.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="norm.html#cb20-1" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(n,kappa){</span>
+<span id="cb20-2"><a href="norm.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  ((n<span class="sc">/</span>(kappa<span class="sc">+</span>n))<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(<span class="dv">40</span><span class="sc">/</span>n)<span class="sc">+</span>(kappa<span class="sc">/</span>(kappa<span class="sc">+</span>n))<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="fl">22.09</span>)<span class="sc">/</span>(<span class="dv">40</span><span class="sc">/</span>n)</span>
+<span id="cb20-3"><a href="norm.html#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-4"><a href="norm.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="fu">ratio</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="dv">1</span>),<span class="at">lwd =</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.3</span>),<span class="at">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;ratio&quot;</span>)</span>
+<span id="cb20-5"><a href="norm.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="fu">ratio</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="dv">3</span>),<span class="at">lwd =</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb20-6"><a href="norm.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="fu">ratio</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="dv">5</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb20-7"><a href="norm.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:mse"></span>
+<img src="BayesStats_files/figure-html/mse-1.png" alt="Ratio of the MSE for various choices of kappa0 and n. kappa0 = 1 (black line), kappa0 = 3 (red line), kappa0 = 5 (blue line)." width="50%" />
+<p class="caption">
+Figure 3.5: Ratio of the MSE for various choices of kappa0 and n. kappa0 = 1 (black line), kappa0 = 3 (red line), kappa0 = 5 (blue line).
+</p>
+</div>
+<p>Notice that when <span class="math inline">\(\kappa_0 = 1\)</span> or <span class="math inline">\(3\)</span> the Bayes estimate has lower MSE than the sample mean, especially when the sample size is low. This is because even though the prior guess <span class="math inline">\(\mu_0 = 19.6\)</span> is seemingly way off, it is not actually that far
+off when considering the uncertainty in our sample data. A choice of <span class="math inline">\(\kappa_0 = 5\)</span> on the other hand puts more weight on the value of 19.6, and the corresponding estimator has a generally higher MSE than the sample mean. As <span class="math inline">\(n\)</span> increases, the bias of each of the estimators shrinks to zero, and the MSEs converge to the common value of <span class="math inline">\(\sigma^2/n\)</span>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bin.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["BayesStats.pdf", "BayesStats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
